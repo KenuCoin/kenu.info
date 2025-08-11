@@ -65,50 +65,13 @@
       max-width: 500px;
     }
 
-    .animated-header {
+    h2 {
       font-weight: 600;
       font-size: 2.5rem;
       letter-spacing: 0.05em;
       margin-top: 0;
       margin-bottom: 1rem;
-      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-      background-size: 600% 600%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonTextGlow 6s ease infinite;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    @keyframes neonTextGlow {
-      0% {
-        background-position: 0% 50%;
-        text-shadow:
-          0 0 3px #6a11cb,
-          0 0 7px #6a11cb,
-          0 0 10px #2575fc,
-          0 0 18px #2575fc,
-          0 0 30px #6a11cb;
-      }
-      50% {
-        background-position: 100% 50%;
-        text-shadow:
-          0 0 5px #2575fc,
-          0 0 10px #2575fc,
-          0 0 15px #6a11cb,
-          0 0 25px #6a11cb,
-          0 0 35px #2575fc;
-      }
-      100% {
-        background-position: 0% 50%;
-        text-shadow:
-          0 0 3px #6a11cb,
-          0 0 7px #6a11cb,
-          0 0 10px #2575fc,
-          0 0 18px #2575fc,
-          0 0 30px #6a11cb;
-      }
+      color: #6a11cb;
     }
 
     .links {
@@ -135,7 +98,6 @@
         inset 0 0 10px #121212;
       transition: transform 0.3s ease;
       animation: neonBorder 4s linear infinite;
-      /* Gradient neon border */
       border: 2px solid transparent;
       background-clip: padding-box;
     }
@@ -208,7 +170,7 @@
         Kenu to nowy memcoin stworzony z myślą o społeczności i zabawie. Naszym celem jest
         budowanie aktywnej i zaangażowanej społeczności, która wspiera rozwój projektu.
       </p>
-      <h2 class="animated-header">O Kenu Memcoin</h2>
+      <h2>O Kenu Memcoin</h2>
       <section>
         <h3 style="color:#1e88e5; margin-top: 0;">Gdzie kupić?</h3>
         <div class="links">

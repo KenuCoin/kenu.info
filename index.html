@@ -4,47 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kenu Memcoin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #1e88e5;
-      --primary-dark: #1565c0;
-      --background: #121212;
-      --card-bg: #1f1f1f;
-      --text-light: #f0f0f0;
-      --text-muted: #888;
-      --border-radius: 12px;
-      --shadow: rgba(0, 0, 0, 0.7);
-      --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-    }
-    * {
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: var(--background);
-      color: var(--text-light);
+      background: #121212;
+      color: #f0f0f0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      line-height: 1.5;
     }
     header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem 2rem;
-      background: #222; /* ciemny, matowy kolor bez animacji */
-      box-shadow: 0 4px 12px var(--shadow);
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
+      background: #121212;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      color: #1e88e5;
       user-select: none;
-      text-transform: uppercase;
     }
 
-    /* Animowany neonowy tekst tylko dla nagłówka po prawej */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .left-block, .right-block {
+      flex: 1 1 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-block img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow:
+        0 0 15px rgba(106, 17, 203, 0.7),
+        0 0 30px rgba(37, 117, 252, 0.7);
+      user-select: none;
+    }
+
+    .right-block {
+      color: #ccc;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+    }
+
     .animated-header {
       font-weight: 600;
       font-size: 2.5rem;
@@ -57,155 +77,85 @@
       -webkit-text-fill-color: transparent;
       animation: neonTextGlow 6s ease infinite;
       position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+
     @keyframes neonTextGlow {
       0% {
         background-position: 0% 50%;
         text-shadow:
-          0 0 5px #6a11cb,
-          0 0 10px #6a11cb,
-          0 0 20px #2575fc,
-          0 0 40px #2575fc,
-          0 0 60px #6a11cb,
-          0 0 80px #2575fc;
+          0 0 3px #6a11cb,
+          0 0 7px #6a11cb,
+          0 0 10px #2575fc,
+          0 0 18px #2575fc,
+          0 0 30px #6a11cb;
       }
       50% {
         background-position: 100% 50%;
         text-shadow:
+          0 0 5px #2575fc,
           0 0 10px #2575fc,
-          0 0 20px #2575fc,
-          0 0 30px #6a11cb,
-          0 0 50px #6a11cb,
-          0 0 70px #2575fc,
-          0 0 90px #6a11cb;
+          0 0 15px #6a11cb,
+          0 0 25px #6a11cb,
+          0 0 35px #2575fc;
       }
       100% {
         background-position: 0% 50%;
         text-shadow:
-          0 0 5px #6a11cb,
-          0 0 10px #6a11cb,
-          0 0 20px #2575fc,
-          0 0 40px #2575fc,
-          0 0 60px #6a11cb,
-          0 0 80px #2575fc;
+          0 0 3px #6a11cb,
+          0 0 7px #6a11cb,
+          0 0 10px #2575fc,
+          0 0 18px #2575fc,
+          0 0 30px #6a11cb;
       }
     }
 
-    /* NOWY UKŁAD POD HEADEREM */
-    .intro {
-      display: flex;
-      max-width: 900px;
-      margin: 3rem auto 4rem;
-      gap: 2rem;
-      padding: 0 1rem;
-    }
-    .left, .right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .left img {
-      width: 100%;
-      height: auto;
-      border-radius: var(--border-radius);
-      box-shadow: 0 8px 20px var(--shadow);
-      user-select: none;
-    }
-    .right {
-      color: var(--text-light);
-    }
-    .right .description {
-      font-size: 1.1rem;
-      color: #bbb;
-      line-height: 1.6;
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-    section {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      padding: 2rem 2.5rem;
-      box-shadow: 0 8px 20px var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    section:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px var(--shadow);
-    }
-    h2 {
-      color: var(--primary);
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    p {
-      font-size: 1.05rem;
-      color: #ddd;
-      margin-bottom: 2rem;
-    }
     .links {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      max-width: 300px;
+      margin-top: 2rem;
     }
 
-    /* PRZYCISKI Z CIĄGŁĄ ANIMOWANĄ NEONOWĄ OBRAMÓWKĄ */
     .link-btn {
-      position: relative;
       display: inline-block;
-      padding: 0.85rem 1.8rem;
+      background: #121212;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
-      color: white;
-      text-decoration: none;
-      background: #292929;
-      box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
-      border: 1px solid #3a3a3a;
-      overflow: visible;
-      transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-      user-select: none;
-      z-index: 0;
-      transform-origin: center center;
+      position: relative;
+      cursor: pointer;
+      box-shadow:
+        0 0 5px #121212,
+        inset 0 0 10px #121212;
+      transition: transform 0.3s ease;
+      animation: neonBorder 4s linear infinite;
+      /* Gradient neon border */
+      border: 2px solid transparent;
+      background-clip: padding-box;
     }
 
     .link-btn::before {
       content: "";
       position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      border-radius: 12px;
-      background: var(--neon-gradient);
-      background-size: 400% 400%;
-      filter: blur(6px);
-      opacity: 1;
-      animation: neonBorder 4s linear infinite;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      background-size: 600% 600%;
+      border-radius: 10px;
       z-index: -1;
-      transition: filter 0.3s ease;
+      animation: neonBorder 4s linear infinite;
     }
 
-    .link-btn:hover,
-    .link-btn:focus {
-      color: #fff;
-      background: #222;
+    .link-btn:hover {
       transform: scale(1.05);
-    }
-
-    .link-btn:hover::before,
-    .link-btn:focus::before {
-      filter: blur(8px);
+      box-shadow:
+        0 0 15px #6a11cb,
+        inset 0 0 20px #2575fc;
     }
 
     @keyframes neonBorder {
@@ -222,34 +172,25 @@
 
     footer {
       text-align: center;
-      padding: 1.5rem 1rem;
+      padding: 1rem 0;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: #888;
       background: #181818;
+      margin-top: auto;
       user-select: none;
-      border-top: 1px solid #2c2c2c;
     }
 
     @media (max-width: 900px) {
-      .intro {
+      main {
         flex-direction: column;
-        margin: 2rem auto 3rem;
+        max-width: 90%;
       }
-      .left, .right {
+      .left-block, .right-block {
+        flex: unset;
         width: 100%;
       }
-      main {
-        margin: 0 1rem 3rem;
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 480px) {
-      section {
-        padding: 1.5rem 1.8rem;
-      }
-      .link-btn {
-        padding: 0.75rem 1.2rem;
-        font-size: 1rem;
+      .links {
+        max-width: 100%;
       }
     }
   </style>
@@ -258,48 +199,35 @@
   <header>
     Kenu Memcoin
   </header>
-
-  <div class="intro">
-    <div class="left">
-      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
-    </div>
-    <div class="right">
-      <h2 class="animated-header">O Kenu Memcoin</h2>
-      <div class="description">
-        Kenu to nowy, dynamiczny memcoin zaprojektowany dla zaangażowanej społeczności i wspólnej zabawy. 
-        Naszym celem jest stworzenie silnej i aktywnej grupy, która będzie napędzać rozwój projektu.
-      </div>
-    </div>
-  </div>
-
   <main>
-    <section>
-      <h2>O Kenu</h2>
-      <p>
+    <div class="left-block">
+      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin Image" />
+    </div>
+    <div class="right-block">
+      <p class="description">
         Kenu to nowy memcoin stworzony z myślą o społeczności i zabawie. Naszym celem jest
         budowanie aktywnej i zaangażowanej społeczności, która wspiera rozwój projektu.
       </p>
-    </section>
-    <section>
-      <h2>Gdzie kupić?</h2>
-      <div class="links">
-        <a class="link-btn" href="https://raydium.io/" target="_blank" rel="noopener noreferrer">
-          Raydium
+      <h2 class="animated-header">O Kenu Memcoin</h2>
+      <section>
+        <h3 style="color:#1e88e5; margin-top: 0;">Gdzie kupić?</h3>
+        <div class="links">
+          <a class="link-btn" href="https://raydium.io/" target="_blank" rel="noopener noreferrer">
+            Raydium
+          </a>
+          <a class="link-btn" href="https://exampledex.com/" target="_blank" rel="noopener noreferrer">
+            Example DEX
+          </a>
+        </div>
+      </section>
+      <section style="margin-top: 2rem;">
+        <h3 style="color:#1e88e5; margin-top: 0;">Social</h3>
+        <a class="link-btn" href="https://twitter.com/TwojTwitter" target="_blank" rel="noopener noreferrer">
+          Twitter @TwojTwitter
         </a>
-        <a class="link-btn" href="https://exampledex.com/" target="_blank" rel="noopener noreferrer">
-          Example DEX
-        </a>
-        <!-- Dodaj inne giełdy w podobny sposób -->
-      </div>
-    </section>
-    <section>
-      <h2>Social</h2>
-      <a class="link-btn" href="https://twitter.com/TwojTwitter" target="_blank" rel="noopener noreferrer">
-        Twitter @TwojTwitter
-      </a>
-    </section>
+      </section>
+    </div>
   </main>
-
   <footer>
     &copy; 2025 Kenu Memcoin. Wszystkie prawa zastrzeżone.
   </footer>

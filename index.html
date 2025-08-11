@@ -4,38 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kenu Memcoin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --background: #121212;
+      --card-bg: #1f1f1f;
+      --text-light: #f0f0f0;
+      --text-muted: #888;
+      --border-radius: 12px;
+      --shadow: rgba(0, 0, 0, 0.7);
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #121212;
-      color: #f0f0f0;
+      background: var(--background);
+      color: var(--text-light);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      line-height: 1.5;
     }
     header {
-      background: #1e88e5;
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(90deg, #1e88e5, #1565c0);
+      box-shadow: 0 4px 12px var(--shadow);
+      font-weight: 600;
+      font-size: 2.2rem;
+      letter-spacing: 0.07em;
+      user-select: none;
+      text-transform: uppercase;
     }
     main {
       flex: 1;
-      max-width: 700px;
-      margin: 2rem auto;
+      max-width: 900px;
+      margin: 3rem auto 4rem;
       padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 20px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px var(--shadow);
     }
     h2 {
-      color: #1e88e5;
-      margin-bottom: 0.5rem;
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
     p {
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      color: #ddd;
+      margin-bottom: 2rem;
     }
     .links {
       display: flex;
@@ -44,33 +81,44 @@
     }
     .link-btn {
       display: inline-block;
-      background: #1e88e5;
+      background: var(--primary);
       color: white;
       text-decoration: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
-      transition: background 0.3s ease;
-      max-width: 250px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(30, 136, 229, 0.6);
+      user-select: none;
     }
-    .link-btn:hover {
-      background: #1565c0;
+    .link-btn:hover,
+    .link-btn:focus {
+      background: var(--primary-dark);
+      box-shadow: 0 6px 15px rgba(21, 101, 192, 0.8);
+      outline: none;
     }
     footer {
       text-align: center;
-      padding: 1rem 0;
+      padding: 1.5rem 1rem;
       font-size: 0.9rem;
-      color: #888;
+      color: var(--text-muted);
       background: #181818;
-      margin-top: auto;
+      user-select: none;
+      border-top: 1px solid #2c2c2c;
     }
+
     @media (max-width: 480px) {
       main {
-        margin: 1rem;
+        margin: 2rem 1rem 3rem;
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 1.5rem 1.8rem;
       }
       .link-btn {
-        max-width: 100%;
+        padding: 0.75rem 1.2rem;
+        font-size: 1rem;
       }
     }
   </style>
@@ -99,7 +147,7 @@
         <!-- Dodaj inne giełdy w podobny sposób -->
       </div>
     </section>
-    <section style="margin-top: 2rem;">
+    <section>
       <h2>Social</h2>
       <a class="link-btn" href="https://twitter.com/TwojTwitter" target="_blank" rel="noopener noreferrer">
         Twitter @TwojTwitter

@@ -101,9 +101,28 @@
       user-select: none;
       z-index: 0;
       transform-origin: center center;
-      gap: 0.6rem;
-      min-width: 180px;
+      gap: 1rem;
+      min-width: 220px;
     }
+    /* Duże ikony przy przyciskach */
+    .link-btn.left-btn img {
+      width: 120px;
+      height: 120px;
+      margin-left: 1rem;
+    }
+    .link-btn.right-btn img {
+      width: 120px;
+      height: 120px;
+      margin-right: 1rem;
+    }
+    /* Ustawienia wyrównania tekstu i obrazków */
+    .link-btn.left-btn {
+      justify-content: flex-start;
+    }
+    .link-btn.right-btn {
+      justify-content: flex-end;
+    }
+
     .link-btn::before {
       content: "";
       position: absolute;
@@ -147,9 +166,9 @@
       height: auto;
     }
 
-    /* Sekcja gdzie kupić */
+    /* Sekcja kupna */
     .buy-kenu {
-      max-width: 600px;
+      max-width: 900px;
       margin: 3rem auto 4rem;
       padding: 0 1rem;
       text-align: center;
@@ -157,32 +176,15 @@
     .buy-kenu h2 {
       color: #fff;
       font-weight: 600;
+      margin-bottom: 2rem;
       font-size: 2rem;
-      margin-bottom: 1.5rem;
       letter-spacing: 0.05em;
     }
     .btn-container {
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: nowrap;
-    }
-    .link-btn.left-btn {
-      justify-content: flex-start;
-    }
-    .link-btn.left-btn img {
-      margin-left: auto;
-    }
-    .link-btn.right-btn {
-      justify-content: flex-end;
-    }
-    .link-btn.right-btn img {
-      margin-right: auto;
-    }
-    .link-btn img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
     footer {
@@ -204,19 +206,18 @@
       .left, .right {
         width: 100%;
       }
-    }
-    @media (max-width: 600px) {
       .btn-container {
         flex-direction: column;
-        max-width: 300px;
-        margin: 0 auto;
+        gap: 1rem;
       }
-      .link-btn {
+      .link-btn.left-btn, .link-btn.right-btn {
         justify-content: center !important;
       }
       .link-btn.left-btn img,
       .link-btn.right-btn img {
-        margin: 0;
+        margin: 0 0 0 1rem !important;
+        width: 60px !important;
+        height: 60px !important;
       }
     }
   </style>
@@ -258,7 +259,7 @@
     </div>
   </div>
 
-  <!-- Sekcja "Where can I buy Kenu?" -->
+  <!-- Sekcja kupna -->
   <section class="buy-kenu">
     <h2>Where can I buy Kenu?</h2>
     <div class="btn-container">

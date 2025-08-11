@@ -36,7 +36,7 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem 2rem;
-      background: #222; /* ciemny, matowy kolor bez animacji */
+      background: #222;
       box-shadow: 0 4px 12px var(--shadow);
       font-weight: 600;
       font-size: 2.2rem;
@@ -45,7 +45,6 @@
       text-transform: uppercase;
     }
 
-    /* NOWY UKŁAD POD HEADEREM */
     .intro {
       display: flex;
       max-width: 900px;
@@ -62,15 +61,15 @@
     .left img {
       width: 100%;
       height: auto;
-      border-radius: 0; /* bez obramówki */
-      box-shadow: none; /* bez cienia */
+      border-radius: 0;
+      box-shadow: none;
       user-select: none;
     }
     .right {
       color: var(--text-light);
     }
     .right h2 {
-      color: white; /* zmienione na biały */
+      color: white;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
@@ -78,12 +77,11 @@
       font-size: 2.5rem;
     }
     .right .description {
-      font-size: 1rem; /* troszkę mniejsze */
+      font-size: 1rem;
       color: #bbb;
       line-height: 1.6;
     }
 
-    /* PODOBRAZEK POD BLOKAMI LEFT/RIGHT */
     .sub-image-container {
       max-width: 900px;
       margin: 2rem auto 4rem;
@@ -96,77 +94,6 @@
       height: auto;
       user-select: none;
       display: block;
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    /* PRZYCISKI Z CIĄGŁĄ ANIMOWANĄ NEONOWĄ OBRAMÓWKĄ */
-    .link-btn {
-      position: relative;
-      display: inline-block;
-      padding: 0.85rem 1.8rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      background: #292929;
-      box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
-      border: 1px solid #3a3a3a;
-      overflow: visible;
-      transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-      user-select: none;
-      z-index: 0;
-      transform-origin: center center;
-    }
-
-    .link-btn::before {
-      content: "";
-      position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      border-radius: 12px;
-      background: var(--neon-gradient);
-      background-size: 400% 400%;
-      filter: blur(6px);
-      opacity: 1;
-      animation: neonBorder 4s linear infinite;
-      z-index: -1;
-      transition: filter 0.3s ease;
-    }
-
-    .link-btn:hover,
-    .link-btn:focus {
-      color: #fff;
-      background: #222;
-      transform: scale(1.05);
-    }
-
-    .link-btn:hover::before,
-    .link-btn:focus::before {
-      filter: blur(8px);
-    }
-
-    @keyframes neonBorder {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
     }
 
     footer {
@@ -186,16 +113,6 @@
       }
       .left, .right {
         width: 100%;
-      }
-      main {
-        margin: 0 1rem 3rem;
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 480px) {
-      .link-btn {
-        padding: 0.75rem 1.2rem;
-        font-size: 1rem;
       }
     }
   </style>
@@ -219,7 +136,7 @@
   </div>
 
   <div class="sub-image-container">
-    <img src="https://i.ibb.co/qFh9pT1H/Kenu-car-png.png" alt="Kenu Car" />
+    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
   </div>
 
   <footer>

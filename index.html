@@ -44,6 +44,53 @@
       text-transform: uppercase;
     }
 
+    /* Animowany neonowy tekst tylko dla nagłówka po prawej */
+    .animated-header {
+      font-weight: 600;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonTextGlow 6s ease infinite;
+      position: relative;
+    }
+    @keyframes neonTextGlow {
+      0% {
+        background-position: 0% 50%;
+        text-shadow:
+          0 0 5px #6a11cb,
+          0 0 10px #6a11cb,
+          0 0 20px #2575fc,
+          0 0 40px #2575fc,
+          0 0 60px #6a11cb,
+          0 0 80px #2575fc;
+      }
+      50% {
+        background-position: 100% 50%;
+        text-shadow:
+          0 0 10px #2575fc,
+          0 0 20px #2575fc,
+          0 0 30px #6a11cb,
+          0 0 50px #6a11cb,
+          0 0 70px #2575fc,
+          0 0 90px #6a11cb;
+      }
+      100% {
+        background-position: 0% 50%;
+        text-shadow:
+          0 0 5px #6a11cb,
+          0 0 10px #6a11cb,
+          0 0 20px #2575fc,
+          0 0 40px #2575fc,
+          0 0 60px #6a11cb,
+          0 0 80px #2575fc;
+      }
+    }
+
     /* NOWY UKŁAD POD HEADEREM */
     .intro {
       display: flex;
@@ -67,14 +114,6 @@
     }
     .right {
       color: var(--text-light);
-    }
-    .right h2 {
-      color: var(--primary);
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      font-size: 2.5rem;
     }
     .right .description {
       font-size: 1.1rem;
@@ -225,7 +264,7 @@
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>O Kenu Memcoin</h2>
+      <h2 class="animated-header">O Kenu Memcoin</h2>
       <div class="description">
         Kenu to nowy, dynamiczny memcoin zaprojektowany dla zaangażowanej społeczności i wspólnej zabawy. 
         Naszym celem jest stworzenie silnej i aktywnej grupy, która będzie napędzać rozwój projektu.

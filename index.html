@@ -43,10 +43,50 @@
       user-select: none;
       text-transform: uppercase;
     }
+
+    /* NOWY UKŁAD POD HEADEREM */
+    .intro {
+      display: flex;
+      max-width: 900px;
+      margin: 3rem auto 4rem;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+    .left, .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .left img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 20px var(--shadow);
+      user-select: none;
+    }
+    .right {
+      color: var(--text-light);
+    }
+    .right .description {
+      font-size: 1.1rem;
+      color: #bbb;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .right h2 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      font-size: 2.5rem;
+    }
+
     main {
       flex: 1;
       max-width: 900px;
-      margin: 3rem auto 4rem;
+      margin: 0 auto 4rem;
       padding: 0 1rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,11 +192,20 @@
       border-top: 1px solid #2c2c2c;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 900px) {
+      .intro {
+        flex-direction: column;
+        margin: 2rem auto 3rem;
+      }
+      .left, .right {
+        width: 100%;
+      }
       main {
-        margin: 2rem 1rem 3rem;
+        margin: 0 1rem 3rem;
         grid-template-columns: 1fr;
       }
+    }
+    @media (max-width: 480px) {
       section {
         padding: 1.5rem 1.8rem;
       }
@@ -171,6 +220,20 @@
   <header>
     Kenu Memcoin
   </header>
+
+  <div class="intro">
+    <div class="left">
+      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
+    </div>
+    <div class="right">
+      <div class="description">
+        Kenu to nowy, dynamiczny memcoin zaprojektowany dla zaangażowanej społeczności i wspólnej zabawy. 
+        Naszym celem jest stworzenie silnej i aktywnej grupy, która będzie napędzać rozwój projektu.
+      </div>
+      <h2>O Kenu Memcoin</h2>
+    </div>
+  </div>
+
   <main>
     <section>
       <h2>O Kenu</h2>
@@ -198,6 +261,7 @@
       </a>
     </section>
   </main>
+
   <footer>
     &copy; 2025 Kenu Memcoin. Wszystkie prawa zastrzeżone.
   </footer>

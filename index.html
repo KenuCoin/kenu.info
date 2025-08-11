@@ -87,7 +87,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;  /* zmniejszony padding pionowy */
+      padding: 0.5rem 1.8rem;  /* zmniejszona wysokość */
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -102,9 +102,32 @@
       z-index: 0;
       transform-origin: center center;
       gap: 1rem;
-      min-width: 220px; /* szerokość zostawiona */
-      height: auto; /* wysokość dostosowana do paddingu */
+      min-width: 220px;
+      height: 48px; /* stała wysokość przycisku */
     }
+    /* Duże ikony przy przyciskach */
+    .link-btn.left-btn img {
+      width: 120px;
+      height: 120px;
+      margin-left: 1rem;
+      pointer-events: none;
+      user-select: none;
+    }
+    .link-btn.right-btn img {
+      width: 120px;
+      height: 120px;
+      margin-right: 1rem;
+      pointer-events: none;
+      user-select: none;
+    }
+    /* Ustawienia wyrównania tekstu i obrazków */
+    .link-btn.left-btn {
+      justify-content: flex-start;
+    }
+    .link-btn.right-btn {
+      justify-content: flex-end;
+    }
+
     .link-btn::before {
       content: "";
       position: absolute;
@@ -148,48 +171,25 @@
       height: auto;
     }
 
-    /* Sekcja "Where I can buy Kenu?" */
-    .buy-section {
+    /* Sekcja kupna */
+    .buy-kenu {
       max-width: 900px;
-      margin: 2rem auto 4rem;
+      margin: 3rem auto 4rem;
       padding: 0 1rem;
       text-align: center;
     }
-    .buy-section h2 {
+    .buy-kenu h2 {
       color: #fff;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
       font-weight: 600;
+      margin-bottom: 2rem;
+      font-size: 2rem;
       letter-spacing: 0.05em;
     }
-    .buy-buttons {
+    .btn-container {
       display: flex;
       justify-content: space-between;
-      max-width: 500px;
-      margin: 0 auto;
-      align-items: center;
-    }
-    .buy-buttons .link-btn {
-      /* szerokość zachowana */
-      min-width: 220px;
-      /* wysokość teraz automatyczna, mniejsza dzięki paddingowi */
-    }
-    .icon-left, .icon-right {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-    }
-    .left-btn {
-      justify-content: flex-start;
-    }
-    .left-btn .icon-left {
-      margin-right: 12px;
-    }
-    .right-btn {
-      justify-content: flex-end;
-    }
-    .right-btn .icon-right {
-      margin-left: 12px;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
     footer {
@@ -211,16 +211,20 @@
       .left, .right {
         width: 100%;
       }
-      .buy-buttons {
+      .btn-container {
         flex-direction: column;
         gap: 1rem;
-        max-width: 300px;
       }
-      .left-btn, .right-btn {
+      .link-btn.left-btn, .link-btn.right-btn {
         justify-content: center !important;
+        height: auto;
+        padding: 0.5rem 1.2rem;
       }
-      .left-btn .icon-left, .right-btn .icon-right {
-        margin: 0 8px 0 0 !important;
+      .link-btn.left-btn img,
+      .link-btn.right-btn img {
+        margin: 0 0 0 1rem !important;
+        width: 60px !important;
+        height: 60px !important;
       }
     }
   </style>
@@ -262,20 +266,20 @@
     </div>
   </div>
 
-  <!-- Sekcja "Where I can buy Kenu?" -->
-  <div class="buy-section">
+  <!-- Sekcja kupna -->
+  <section class="buy-kenu">
     <h2>Where can I buy Kenu?</h2>
-    <div class="buy-buttons">
+    <div class="btn-container">
       <a href="#" class="link-btn left-btn">
-        <img src="https://i.ibb.co/x8GN0pQm/Raydium-icon.png" alt="Raydium" class="icon-left" />
-        Buy on Raydium
+        Buy on Exchange 1
+        <img src="https://i.ibb.co/x8GN0pQm/Raydium-icon.png" alt="Raydium" />
       </a>
       <a href="#" class="link-btn right-btn">
-        Buy on Pump
-        <img src="https://i.ibb.co/gFbNggy0/Pump-icon.png" alt="Pump" class="icon-right" />
+        <img src="https://i.ibb.co/gFbNggy0/Pump-icon.png" alt="Pump" />
+        Buy on Exchange 2
       </a>
     </div>
-  </div>
+  </section>
 
   <footer>
     &copy; 2025 Kenu Memecoin. All rights reserved.

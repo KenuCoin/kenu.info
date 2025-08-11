@@ -33,50 +33,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
       background: #222;
       box-shadow: 0 4px 12px var(--shadow);
       user-select: none;
-      text-transform: uppercase;
-      gap: 1rem;
     }
     header img {
-      height: 62.5px; /* 25% większe niż 50px */
+      max-height: 50px;
+      width: auto;
       user-select: none;
-    }
-    header .community-link {
-      color: #a64dff;
-      font-weight: 600;
-      font-size: 1.5rem;
-      cursor: pointer;
-      position: relative;
-      text-decoration: none;
-      padding-bottom: 4px;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    header .community-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--neon-gradient);
-      background-size: 400% 400%;
-      filter: blur(4px);
-      opacity: 0.7;
-      animation: neonBorder 4s linear infinite;
-      transition: opacity 0.3s ease;
-      border-radius: 4px;
-    }
-    header .community-link:hover,
-    header .community-link:focus {
-      color: #fff;
-    }
-    header .community-link:hover::after,
-    header .community-link:focus::after {
-      opacity: 1;
     }
 
     /* BLOKI LEWO/PRAWO */
@@ -101,12 +66,12 @@
       box-shadow: none;
     }
     .right h2, .left h2 {
-      color: #fff;
+      color: #fff;  /* biały tekst */
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem;
+      font-size: 2rem; /* mniejszy */
     }
     .description {
       font-size: 1rem;
@@ -123,7 +88,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;
+      padding: 0.85rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -139,29 +104,24 @@
       transform-origin: center center;
       gap: 1rem;
       min-width: 220px;
-      height: 48px; /* niższa wysokość przycisku */
     }
-    .link-btn img {
-      height: 36px;
-      width: 36px;
-      user-select: none;
+    /* Duże ikony przy przyciskach */
+    .link-btn.left-btn img {
+      width: 120px;
+      height: 120px;
+      margin-left: 1rem;
     }
+    .link-btn.right-btn img {
+      width: 120px;
+      height: 120px;
+      margin-right: 1rem;
+    }
+    /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
       justify-content: flex-start;
-      padding-left: 1.2rem;
     }
     .link-btn.right-btn {
       justify-content: flex-end;
-      padding-right: 1.2rem;
-    }
-
-    .link-btn.left-btn img {
-      order: 2;
-      margin-left: 0.8rem;
-    }
-    .link-btn.right-btn img {
-      order: 1;
-      margin-right: 0.8rem;
     }
 
     .link-btn::before {
@@ -253,21 +213,19 @@
       }
       .link-btn.left-btn, .link-btn.right-btn {
         justify-content: center !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
       }
       .link-btn.left-btn img,
       .link-btn.right-btn img {
         margin: 0 0 0 1rem !important;
-        width: 36px !important;
-        height: 36px !important;
+        width: 60px !important;
+        height: 60px !important;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="KENU Logo" />
+    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Memecoin Logo" />
   </header>
 
   <!-- Pierwszy blok -->

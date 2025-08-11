@@ -87,7 +87,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.85rem 1.8rem;
+      padding: 0.5rem 1.8rem;  /* zmniejszony padding pionowy */
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -102,7 +102,8 @@
       z-index: 0;
       transform-origin: center center;
       gap: 1rem;
-      min-width: 195px; /* zmniejszone o 25px */
+      min-width: 220px; /* szerokość zostawiona */
+      height: auto; /* wysokość dostosowana do paddingu */
     }
     .link-btn::before {
       content: "";
@@ -169,8 +170,9 @@
       align-items: center;
     }
     .buy-buttons .link-btn {
-      /* już z min-width 195px */
-      height: 48px;
+      /* szerokość zachowana */
+      min-width: 220px;
+      /* wysokość teraz automatyczna, mniejsza dzięki paddingowi */
     }
     .icon-left, .icon-right {
       width: 40px;

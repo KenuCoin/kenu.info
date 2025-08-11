@@ -16,7 +16,6 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-      --purple: #6a11cb;
     }
     * {
       box-sizing: border-box;
@@ -49,7 +48,7 @@
     .intro {
       display: flex;
       max-width: 900px;
-      margin: 3rem auto 4rem;
+      margin: 3rem auto 1rem;
       gap: 2rem;
       padding: 0 1rem;
     }
@@ -62,13 +61,15 @@
     .left img {
       width: 100%;
       height: auto;
-      /* Usunięto border-radius, box-shadow i user-select */
+      border-radius: 0; /* usunięte zaokrąglenie */
+      box-shadow: none; /* usunięty cień */
+      user-select: none;
     }
     .right {
       color: var(--text-light);
     }
     .right h2 {
-      color: white;
+      color: white; /* zmienione na biały */
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
@@ -76,13 +77,79 @@
       font-size: 2.5rem;
     }
     .right .description {
-      font-size: 1rem; /* zmniejszone nieco z 1.1rem */
+      font-size: 1rem; /* troszkę mniejsze */
       color: #bbb;
       line-height: 1.6;
     }
-    .right .description .highlight {
-      color: var(--purple);
+
+    /* Sekcja z obrazkiem do scrollowania */
+    .scroll-container {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      overflow-x: auto;
+      padding: 0 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) transparent;
+      user-select: none;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+      border-radius: 4px;
+    }
+
+    .scroll-container img {
+      display: block;
+      max-height: 250px;
+      margin: 0 auto;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 20px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
       font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    p {
+      font-size: 1.05rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     /* PRZYCISKI Z CIĄGŁĄ ANIMOWANĄ NEONOWĄ OBRAMÓWKĄ */
@@ -164,6 +231,19 @@
       .left, .right {
         width: 100%;
       }
+      main {
+        margin: 0 1rem 3rem;
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      section {
+        padding: 1.5rem 1.8rem;
+      }
+      .link-btn {
+        padding: 0.75rem 1.2rem;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -179,10 +259,14 @@
     <div class="right">
       <h2>O Kenu Memcoin</h2>
       <div class="description">
-        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
+        <span style="color:#6a11cb;">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
+  </div>
+
+  <div class="scroll-container">
+    <img src="https://i.ibb.co/Qv9pTnDZ/Kenu-car-png.png" alt="Kenu Car" />
   </div>
 
   <footer>
@@ -190,4 +274,3 @@
   </footer>
 </body>
 </html>
-

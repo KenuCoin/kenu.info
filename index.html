@@ -33,15 +33,43 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 1.5rem;
       padding: 1rem 2rem;
       background: #222;
       box-shadow: 0 4px 12px var(--shadow);
       user-select: none;
     }
     header img {
-      max-height: 62.5px;
+      max-height: 62.5px; /* 25% większe niż 50px */
       width: auto;
       user-select: none;
+    }
+    .community-link {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.5rem;
+      text-decoration: none;
+      position: relative;
+      letter-spacing: 0.08em;
+      user-select: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      background-size: 400% 400%;
+      animation: neonGradient 4s linear infinite;
+      box-shadow: 0 0 8px var(--primary);
+      transition: box-shadow 0.3s ease, color 0.3s ease;
+    }
+    .community-link:hover,
+    .community-link:focus {
+      color: #fff;
+      box-shadow: 0 0 20px var(--primary);
+      outline: none;
+    }
+    @keyframes neonGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* BLOKI LEWO/PRAWO */
@@ -66,12 +94,12 @@
       box-shadow: none;
     }
     .right h2, .left h2 {
-      color: #fff;  /* biały tekst */
+      color: #fff;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem; /* mniejszy */
+      font-size: 2rem;
     }
     .description {
       font-size: 1rem;
@@ -105,7 +133,6 @@
       gap: 1rem;
       min-width: 220px;
     }
-    /* Duże ikony przy przyciskach */
     .link-btn.left-btn img {
       width: 120px;
       height: 120px;
@@ -116,14 +143,12 @@
       height: 120px;
       margin-right: 1rem;
     }
-    /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
       justify-content: flex-start;
     }
     .link-btn.right-btn {
       justify-content: flex-end;
     }
-
     .link-btn::before {
       content: "";
       position: absolute;
@@ -226,6 +251,7 @@
 <body>
   <header>
     <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Memecoin Logo" />
+    <a href="https://x.com/KenuCoin" target="_blank" rel="noopener" class="community-link">Community</a>
   </header>
 
   <!-- Pierwszy blok -->
@@ -280,4 +306,3 @@
   </footer>
 </body>
 </html>
-

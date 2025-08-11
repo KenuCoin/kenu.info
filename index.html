@@ -16,6 +16,7 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      --purple: #6a11cb;
     }
     * {
       box-sizing: border-box;
@@ -77,9 +78,13 @@
       font-size: 2.5rem;
     }
     .right .description {
-      font-size: 1.1rem;
+      font-size: 1rem; /* zmniejszone nieco z 1.1rem */
       color: #bbb;
       line-height: 1.6;
+    }
+    .right .description .highlight {
+      color: var(--purple);
+      font-weight: 600;
     }
 
     /* PRZYCISKI Z CIĄGŁĄ ANIMOWANĄ NEONOWĄ OBRAMÓWKĄ */
@@ -174,11 +179,10 @@
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>What is Kenu?</h2>
+      <h2>O Kenu Memcoin</h2>
       <div class="description">
-        Kenu is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.
-
-Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
+        Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
   </div>
@@ -188,4 +192,3 @@ Kenu is not just a unique character - it’s a symbol of a new era of creativity
   </footer>
 </body>
 </html>
-

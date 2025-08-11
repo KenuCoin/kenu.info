@@ -33,14 +33,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
       background: #222;
       box-shadow: 0 4px 12px var(--shadow);
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
       user-select: none;
-      text-transform: uppercase;
+    }
+    header img {
+      max-height: 50px;
+      width: auto;
+      user-select: none;
     }
 
     /* BLOKI LEWO/PRAWO */
@@ -87,7 +88,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;  /* zmniejszona wysokość */
+      padding: 0.85rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -103,22 +104,17 @@
       transform-origin: center center;
       gap: 1rem;
       min-width: 220px;
-      height: 48px; /* stała wysokość przycisku */
     }
     /* Duże ikony przy przyciskach */
     .link-btn.left-btn img {
       width: 120px;
       height: 120px;
       margin-left: 1rem;
-      pointer-events: none;
-      user-select: none;
     }
     .link-btn.right-btn img {
       width: 120px;
       height: 120px;
       margin-right: 1rem;
-      pointer-events: none;
-      user-select: none;
     }
     /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
@@ -217,8 +213,6 @@
       }
       .link-btn.left-btn, .link-btn.right-btn {
         justify-content: center !important;
-        height: auto;
-        padding: 0.5rem 1.2rem;
       }
       .link-btn.left-btn img,
       .link-btn.right-btn img {
@@ -231,7 +225,7 @@
 </head>
 <body>
   <header>
-    Kenu Memcoin
+    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Memecoin Logo" />
   </header>
 
   <!-- Pierwszy blok -->

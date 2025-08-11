@@ -102,27 +102,8 @@
       z-index: 0;
       transform-origin: center center;
       gap: 1rem;
-      min-width: 220px;
+      min-width: 195px; /* zmniejszone o 25px */
     }
-    /* Duże ikony przy przyciskach */
-    .link-btn.left-btn img {
-      width: 120px;
-      height: 120px;
-      margin-left: 1rem;
-    }
-    .link-btn.right-btn img {
-      width: 120px;
-      height: 120px;
-      margin-right: 1rem;
-    }
-    /* Ustawienia wyrównania tekstu i obrazków */
-    .link-btn.left-btn {
-      justify-content: flex-start;
-    }
-    .link-btn.right-btn {
-      justify-content: flex-end;
-    }
-
     .link-btn::before {
       content: "";
       position: absolute;
@@ -166,25 +147,47 @@
       height: auto;
     }
 
-    /* Sekcja kupna */
-    .buy-kenu {
+    /* Sekcja "Where I can buy Kenu?" */
+    .buy-section {
       max-width: 900px;
-      margin: 3rem auto 4rem;
+      margin: 2rem auto 4rem;
       padding: 0 1rem;
       text-align: center;
     }
-    .buy-kenu h2 {
+    .buy-section h2 {
       color: #fff;
-      font-weight: 600;
-      margin-bottom: 2rem;
       font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
       letter-spacing: 0.05em;
     }
-    .btn-container {
+    .buy-buttons {
       display: flex;
       justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    .buy-buttons .link-btn {
+      /* już z min-width 195px */
+      height: 48px;
+    }
+    .icon-left, .icon-right {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .left-btn {
+      justify-content: flex-start;
+    }
+    .left-btn .icon-left {
+      margin-right: 12px;
+    }
+    .right-btn {
+      justify-content: flex-end;
+    }
+    .right-btn .icon-right {
+      margin-left: 12px;
     }
 
     footer {
@@ -206,18 +209,16 @@
       .left, .right {
         width: 100%;
       }
-      .btn-container {
+      .buy-buttons {
         flex-direction: column;
         gap: 1rem;
+        max-width: 300px;
       }
-      .link-btn.left-btn, .link-btn.right-btn {
+      .left-btn, .right-btn {
         justify-content: center !important;
       }
-      .link-btn.left-btn img,
-      .link-btn.right-btn img {
-        margin: 0 0 0 1rem !important;
-        width: 60px !important;
-        height: 60px !important;
+      .left-btn .icon-left, .right-btn .icon-right {
+        margin: 0 8px 0 0 !important;
       }
     }
   </style>
@@ -259,24 +260,23 @@
     </div>
   </div>
 
-  <!-- Sekcja kupna -->
-  <section class="buy-kenu">
+  <!-- Sekcja "Where I can buy Kenu?" -->
+  <div class="buy-section">
     <h2>Where can I buy Kenu?</h2>
-    <div class="btn-container">
+    <div class="buy-buttons">
       <a href="#" class="link-btn left-btn">
-        Buy on Raydium.io
-        <img src="https://i.ibb.co/x8GN0pQm/Raydium-icon.png" alt="Raydium" />
+        <img src="https://i.ibb.co/x8GN0pQm/Raydium-icon.png" alt="Raydium" class="icon-left" />
+        Buy on Raydium
       </a>
       <a href="#" class="link-btn right-btn">
-        <img src="https://i.ibb.co/gFbNggy0/Pump-icon.png" alt="Pump" />
-        Buy on Pump.fun
+        Buy on Pump
+        <img src="https://i.ibb.co/gFbNggy0/Pump-icon.png" alt="Pump" class="icon-right" />
       </a>
     </div>
-  </section>
+  </div>
 
   <footer>
     &copy; 2025 Kenu Memecoin. All rights reserved.
   </footer>
 </body>
 </html>
-

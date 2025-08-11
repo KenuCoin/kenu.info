@@ -8,7 +8,6 @@
   <style>
     :root {
       --primary: #1e88e5;
-      --primary-dark: #1565c0;
       --background: #121212;
       --card-bg: #1f1f1f;
       --text-light: #f0f0f0;
@@ -43,22 +42,16 @@
       user-select: none;
       text-transform: uppercase;
     }
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      padding-bottom: 2rem;
-    }
-    .intro, .intro-reverse {
+
+    /* BLOKI LEWO/PRAWO */
+    .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 3rem auto;
       gap: 2rem;
       padding: 0 1rem;
     }
-    .intro .left, .intro .right,
-    .intro-reverse .left, .intro-reverse .right {
+    .left, .right {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -67,16 +60,17 @@
     .left img, .right img {
       width: 100%;
       height: auto;
-      display: block;
       user-select: none;
+      border-radius: 0;
+      box-shadow: none;
     }
-    h2 {
-      color: var(--text-light);
+    .right h2, .left h2 {
+      color: #fff;  /* biały tekst */
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem;
+      font-size: 2rem; /* mniejszy */
     }
     .description {
       font-size: 1rem;
@@ -84,19 +78,71 @@
       line-height: 1.6;
     }
     .description .highlight {
-      color: #a64afc;
+      color: #a64dff;
     }
-    .center-image {
+
+    /* PRZYCISKI NEONOWE */
+    .link-btn {
+      position: relative;
+      display: inline-block;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      background: #292929;
+      box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+      border: 1px solid #3a3a3a;
+      overflow: visible;
+      transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+      user-select: none;
+      z-index: 0;
+      transform-origin: center center;
+    }
+    .link-btn::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 12px;
+      background: var(--neon-gradient);
+      background-size: 400% 400%;
+      filter: blur(6px);
+      opacity: 1;
+      animation: neonBorder 4s linear infinite;
+      z-index: -1;
+      transition: filter 0.3s ease;
+    }
+    .link-btn:hover,
+    .link-btn:focus {
+      color: #fff;
+      background: #222;
+      transform: scale(1.05);
+    }
+    .link-btn:hover::before,
+    .link-btn:focus::before {
+      filter: blur(8px);
+    }
+    @keyframes neonBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* OBRAZEK PEŁNEJ SZEROKOŚCI */
+    .full-width-image {
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 2rem 0;
+      margin: 2rem 0;
     }
-    .center-image img {
+    .full-width-image img {
       max-width: 100%;
       height: auto;
-      display: block;
     }
+
     footer {
       text-align: center;
       padding: 1.5rem 1rem;
@@ -105,10 +151,16 @@
       background: #181818;
       user-select: none;
       border-top: 1px solid #2c2c2c;
+      margin-top: auto;
     }
+
     @media (max-width: 900px) {
-      .intro, .intro-reverse {
+      .intro, .reverse-intro {
         flex-direction: column;
+        margin: 2rem auto;
+      }
+      .left, .right {
+        width: 100%;
       }
     }
   </style>
@@ -118,48 +170,38 @@
     Kenu Memcoin
   </header>
 
-  <main>
-    <!-- Pierwszy blok -->
-    <div class="intro">
-      <div class="left">
-        <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
-      </div>
-      <div class="right">
-        <h2>O Kenu Memcoin</h2>
-        <div class="description">
-          <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. 
-          We believe the strength of a community lies in its creativity, commitment, and shared goals. 
-          The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. 
-          Kenu is conquering both the real and virtual worlds.<br><br>
-          Kenu is not just a unique character – it’s a symbol of a new era of creativity and freedom of expression. 
-          Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
-        </div>
+  <!-- Pierwszy blok -->
+  <div class="intro">
+    <div class="left">
+      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
+    </div>
+    <div class="right">
+      <h2>O Kenu Memcoin</h2>
+      <div class="description">
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
+        Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
+  </div>
 
-    <!-- Obrazek na środku -->
-    <div class="center-image">
-      <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
-    </div>
+  <!-- Duży obrazek -->
+  <div class="full-width-image">
+    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
+  </div>
 
-    <!-- Drugi blok -->
-    <div class="intro-reverse">
-      <div class="left">
-        <h2>O Kenu Memcoin</h2>
-        <div class="description">
-          <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. 
-          We believe the strength of a community lies in its creativity, commitment, and shared goals. 
-          The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. 
-          Kenu is conquering both the real and virtual worlds.<br><br>
-          Kenu is not just a unique character – it’s a symbol of a new era of creativity and freedom of expression. 
-          Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
-        </div>
-      </div>
-      <div class="right">
-        <img src="https://i.ibb.co/0yFrTBjC/Kenu-Suit.png" alt="Kenu Suit" />
+  <!-- Drugi blok -->
+  <div class="reverse-intro">
+    <div class="left">
+      <h2>O Kenu Memcoin</h2>
+      <div class="description">
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
+        Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
-  </main>
+    <div class="right">
+      <img src="https://i.ibb.co/0yFrTBjC/Kenu-Suit.png" alt="Kenu Suit" />
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Kenu Memcoin. Wszystkie prawa zastrzeżone.

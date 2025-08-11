@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kenu Memecoin</title>
+  <title>Kenu Memcoin</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -45,7 +45,7 @@
       text-transform: uppercase;
     }
 
-    .intro {
+    .intro, .intro-reverse {
       display: flex;
       max-width: 900px;
       margin: 3rem auto 2rem;
@@ -58,7 +58,7 @@
       flex-direction: column;
       justify-content: center;
     }
-    .left img {
+    .left img, .right img {
       width: 100%;
       height: auto;
       border-radius: 0;
@@ -68,7 +68,7 @@
     .right {
       color: var(--text-light);
     }
-    .right h2 {
+    .right h2, .left h2 {
       color: white;
       margin-top: 0;
       margin-bottom: 1rem;
@@ -76,7 +76,7 @@
       letter-spacing: 0.05em;
       font-size: 2.5rem;
     }
-    .right .description {
+    .description {
       font-size: 1rem;
       color: #bbb;
       line-height: 1.6;
@@ -107,7 +107,7 @@
     }
 
     @media (max-width: 900px) {
-      .intro {
+      .intro, .intro-reverse {
         flex-direction: column;
         margin: 2rem auto 3rem;
       }
@@ -122,12 +122,13 @@
     Kenu Memcoin
   </header>
 
+  <!-- Pierwszy blok -->
   <div class="intro">
     <div class="left">
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>What is Kenu?</h2>
+      <h2>O Kenu Memcoin</h2>
       <div class="description">
         <span style="color: #8a2be2;">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br /><br />
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
@@ -135,15 +136,27 @@
     </div>
   </div>
 
+  <!-- Drugi blok (odwrócony układ) -->
+  <div class="intro-reverse">
+    <div class="left">
+      <h2>O Kenu Memcoin</h2>
+      <div class="description">
+        <span style="color: #8a2be2;">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br /><br />
+        Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
+      </div>
+    </div>
+    <div class="right">
+      <img src="https://i.ibb.co/0yFrTBjC/Kenu-Suit.png" alt="Kenu Suit" />
+    </div>
+  </div>
+
+  <!-- Obrazek pod blokami -->
   <div class="sub-image-container">
-    <img src="https://i.ibb.co/JwdzFQr5/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
+    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
   </div>
 
   <footer>
-    &copy; 2025 Kenu Memecoin. All rights reserved.
+    &copy; 2025 Kenu Memcoin. Wszystkie prawa zastrzeżone.
   </footer>
 </body>
 </html>
-
-
-

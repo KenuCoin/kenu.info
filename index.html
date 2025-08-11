@@ -15,6 +15,7 @@
       --text-muted: #888;
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
+      --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
     }
     * {
       box-sizing: border-box;
@@ -34,26 +35,13 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem 2rem;
-      background: linear-gradient(270deg, #1e88e5, #1565c0, #42a5f5, #1565c0);
-      background-size: 600% 600%;
-      animation: gradientMove 10s ease infinite;
+      background: #222; /* ciemny, matowy kolor bez animacji */
       box-shadow: 0 4px 12px var(--shadow);
       font-weight: 600;
       font-size: 2.2rem;
       letter-spacing: 0.07em;
       user-select: none;
       text-transform: uppercase;
-    }
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
     }
     main {
       flex: 1;
@@ -93,53 +81,48 @@
       gap: 1rem;
     }
 
-    /* NOWE STYLE PRZYCISKÓW NEON */
+    /* PRZYCISKI Z ANIMOWANĄ NEONOWĄ OBRAMÓWKĄ */
     .link-btn {
       position: relative;
       display: inline-block;
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
-      text-decoration: none;
       padding: 0.85rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
-      overflow: hidden;
-      transition: color 0.3s ease;
-      box-shadow: 0 0 8px rgba(106, 17, 203, 0.7);
+      color: white;
+      text-decoration: none;
+      background: #1e1e1e;
+      box-shadow: none;
+      overflow: visible;
+      transition: color 0.3s ease, background 0.3s ease;
       user-select: none;
+      z-index: 0;
     }
 
     .link-btn::before {
       content: "";
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 12px;
+      background: var(--neon-gradient);
       background-size: 400% 400%;
-      filter: blur(10px);
+      filter: blur(6px);
       opacity: 0;
       transition: opacity 0.3s ease;
       animation: none;
-      border-radius: 8px;
       z-index: -1;
-    }
-
-    .link-btn:hover,
-    .link-btn:focus {
-      color: #fff;
-      box-shadow: 0 0 20px #6a11cb, 0 0 30px #2575fc;
     }
 
     .link-btn:hover::before,
     .link-btn:focus::before {
       opacity: 1;
-      animation: neonGradient 3s ease infinite;
+      animation: neonBorder 4s linear infinite;
     }
 
-    @keyframes neonGradient {
+    @keyframes neonBorder {
       0% {
         background-position: 0% 50%;
       }
@@ -149,6 +132,12 @@
       100% {
         background-position: 0% 50%;
       }
+    }
+
+    .link-btn:hover,
+    .link-btn:focus {
+      color: #fff;
+      background: #222;
     }
 
     footer {

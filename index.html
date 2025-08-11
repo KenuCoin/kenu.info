@@ -34,13 +34,26 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem 2rem;
-      background: linear-gradient(90deg, #1e88e5, #1565c0);
+      background: linear-gradient(270deg, #1e88e5, #1565c0, #42a5f5, #1565c0);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
       box-shadow: 0 4px 12px var(--shadow);
       font-weight: 600;
       font-size: 2.2rem;
       letter-spacing: 0.07em;
       user-select: none;
       text-transform: uppercase;
+    }
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
     main {
       flex: 1;
@@ -199,4 +212,3 @@
   </footer>
 </body>
 </html>
-

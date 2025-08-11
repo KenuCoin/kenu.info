@@ -16,11 +16,8 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-      --purple: #8a2be2;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -44,11 +41,10 @@
       user-select: none;
       text-transform: uppercase;
     }
-
-    .intro, .intro-reverse {
+    .intro {
       display: flex;
       max-width: 900px;
-      margin: 3rem auto 2rem;
+      margin: 3rem auto 4rem;
       gap: 2rem;
       padding: 0 1rem;
     }
@@ -61,15 +57,10 @@
     .left img, .right img {
       width: 100%;
       height: auto;
-      border-radius: 0;
-      box-shadow: none;
       user-select: none;
     }
-    .right {
-      color: var(--text-light);
-    }
-    .right h2, .left h2 {
-      color: white;
+    .right h2 {
+      color: var(--primary);
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
@@ -81,39 +72,25 @@
       color: #bbb;
       line-height: 1.6;
     }
-
-    .sub-image-container {
-      max-width: 900px;
-      margin: 2rem auto 4rem;
-      padding: 0 1rem;
+    .description .highlight {
+      color: #a020f0;
+    }
+    .center-image {
       display: flex;
       justify-content: center;
+      margin: 3rem 0;
     }
-    .sub-image-container img {
+    .center-image img {
       max-width: 100%;
       height: auto;
-      user-select: none;
       display: block;
     }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      background: #181818;
-      user-select: none;
-      border-top: 1px solid #2c2c2c;
-    }
-
     @media (max-width: 900px) {
-      .intro, .intro-reverse {
+      .intro {
         flex-direction: column;
         margin: 2rem auto 3rem;
       }
-      .left, .right {
-        width: 100%;
-      }
+      .left, .right { width: 100%; }
     }
   </style>
 </head>
@@ -122,7 +99,7 @@
     Kenu Memcoin
   </header>
 
-  <!-- Pierwszy blok -->
+  <!-- BLOK 1 -->
   <div class="intro">
     <div class="left">
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
@@ -130,18 +107,25 @@
     <div class="right">
       <h2>O Kenu Memcoin</h2>
       <div class="description">
-        <span style="color: #8a2be2;">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br /><br />
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.
+        <br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
   </div>
 
-  <!-- Drugi blok (odwrócony układ) -->
-  <div class="intro-reverse">
+  <!-- OBRAZEK AUTA -->
+  <div class="center-image">
+    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
+  </div>
+
+  <!-- BLOK 2 -->
+  <div class="intro">
     <div class="left">
       <h2>O Kenu Memcoin</h2>
       <div class="description">
-        <span style="color: #8a2be2;">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br /><br />
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.
+        <br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
@@ -149,14 +133,5 @@
       <img src="https://i.ibb.co/0yFrTBjC/Kenu-Suit.png" alt="Kenu Suit" />
     </div>
   </div>
-
-  <!-- Obrazek pod blokami -->
-  <div class="sub-image-container">
-    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
-  </div>
-
-  <footer>
-    &copy; 2025 Kenu Memcoin. Wszystkie prawa zastrzeżone.
-  </footer>
 </body>
 </html>

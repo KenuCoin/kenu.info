@@ -57,9 +57,21 @@
       user-select: none;
       filter: drop-shadow(0 0 6px var(--neon-glow));
       transition: filter 0.3s ease;
+      animation: neonPulse 3s ease-in-out infinite;
     }
     header:hover .header-logo {
       filter: drop-shadow(0 0 12px var(--neon-glow));
+    }
+
+    @keyframes neonPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px var(--neon-glow));
+        opacity: 1;
+      }
+      50% {
+        filter: drop-shadow(0 0 18px var(--neon-glow));
+        opacity: 0.8;
+      }
     }
 
     /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
@@ -298,74 +310,6 @@
         transform: translateY(0) scale(1);
       }
     }
-
-    /* ====== Promyczki przy słowie "Kenu" (tylko to słowo) ====== */
-    .spark {
-      position: relative;
-      display: inline-block;
-      color: #a64dff;
-      font-weight: 700;
-      z-index: 2; /* upewniamy się, że jest nad tłem pyłu */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* delikatne tło/puls */
-    .spark::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
-      width: 220%;
-      height: 220%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(166,77,255,0.28) 0%, rgba(166,77,255,0.08) 25%, transparent 55%);
-      filter: blur(6px);
-      z-index: 1;
-      pointer-events: none;
-      animation: sparkPulse 2.2s ease-in-out infinite;
-    }
-
-    /* koniczynka promyczków: conic-gradient tworzy pasy (rays) obracane animacją */
-    .spark::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) rotate(0deg);
-      width: 300%;
-      height: 300%;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg,
-        rgba(166,77,255,0.55) 0deg 10deg,
-        rgba(166,77,255,0.12) 10deg 20deg,
-        transparent 20deg 40deg,
-        rgba(166,77,255,0.45) 40deg 50deg,
-        rgba(166,77,255,0.08) 50deg 60deg,
-        transparent 60deg 80deg,
-        rgba(166,77,255,0.35) 80deg 90deg,
-        rgba(166,77,255,0.08) 90deg 100deg,
-        transparent 100deg 360deg
-      );
-      filter: blur(4px) saturate(120%);
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.92;
-      animation: sparkRotate 5.5s linear infinite;
-      mask: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.15) 45%, transparent 65%);
-    }
-
-    @keyframes sparkPulse {
-      0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
-      50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
-    }
-    @keyframes sparkRotate {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    /* koniec efektu promyczków */
   </style>
 </head>
 <body>
@@ -381,7 +325,7 @@
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>What is <span class="spark">Kenu</span>?</h2>
+      <h2>What is Kenu?</h2>
       <div class="description">
         <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
@@ -427,7 +371,6 @@
   </footer>
 
   <script>
-    /* galaxy particles - zostawione tak jak wcześniej */
     const galaxy = document.getElementById('galaxy');
     const starsCount = 50;
 

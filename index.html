@@ -53,7 +53,7 @@
       box-shadow: 0 0 40px var(--neon-glow);
     }
     .header-logo {
-      height: 3.125rem; /* powiększone o 25% */
+      height: 3.125rem;
       user-select: none;
       filter: drop-shadow(0 0 6px var(--neon-glow));
       transition: filter 0.3s ease;
@@ -62,7 +62,6 @@
       filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
-    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -92,12 +91,12 @@
       filter: brightness(1.1);
     }
     .right h2, .left h2 {
-      color: #fff;  /* biały tekst */
+      color: #fff;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem; /* mniejszy */
+      font-size: 2rem;
     }
     .description {
       font-size: 1rem;
@@ -261,42 +260,59 @@
       }
     }
 
-    /* Galaktyczny pył - tło */
     .galaxy-background {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none; /* nie przeszkadza w kliku */
+      pointer-events: none;
       overflow: hidden;
       z-index: 0;
       background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
     }
-
-    /* Pojedyncza gwiazda/pyłek */
     .star {
       position: absolute;
-      background: #a64dff; /* fioletowy */
+      background: #a64dff;
       border-radius: 50%;
       opacity: 0.7;
       animation: twinkle 6s infinite ease-in-out alternate;
       will-change: transform, opacity;
     }
-    
-    /* Migotanie gwiazd */
     @keyframes twinkle {
-      0% {
-        opacity: 0.3;
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(-10px) scale(1.15);
-      }
-      100% {
-        opacity: 0.3;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0.3; transform: translateY(0) scale(1); }
+      50% { opacity: 1; transform: translateY(-10px) scale(1.15); }
+      100% { opacity: 0.3; transform: translateY(0) scale(1); }
+    }
+
+    /* Efekt glow i promieni tylko na słowie "Kenu" w pierwszym nagłówku */
+    .kenu-glow {
+      position: relative;
+      color: #a64dff;
+      text-shadow: 0 0 8px #a64dff, 0 0 16px #a64dff, 0 0 24px #a64dff;
+      font-weight: bold;
+    }
+    .kenu-glow::before,
+    .kenu-glow::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(166,77,255,0.4) 0%, transparent 70%);
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: kenuRays 6s linear infinite;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .kenu-glow::after {
+      animation-direction: reverse;
+      opacity: 0.6;
+    }
+    @keyframes kenuRays {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
   </style>
 </head>
@@ -313,7 +329,7 @@
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>What is Kenu?</h2>
+      <h2>What is <span class="kenu-glow">Kenu</span>?</h2>
       <div class="description">
         <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
@@ -361,23 +377,15 @@
   <script>
     const galaxy = document.getElementById('galaxy');
     const starsCount = 50;
-
     for(let i=0; i<starsCount; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
-
-      // Losowa wielkość (1-3px)
       const size = Math.random() * 2 + 1;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
-
-      // Losowa pozycja
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
-
-      // Losowa animacja opóźniona, żeby nie migotały synchronicznie
       star.style.animationDelay = (Math.random() * 6) + 's';
-
       galaxy.appendChild(star);
     }
   </script>

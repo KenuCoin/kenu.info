@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -30,29 +30,34 @@
       min-height: 100vh;
       line-height: 1.5;
     }
+    /* NAGŁÓWEK */
     header {
+      position: sticky;
+      top: 0;
+      background: rgba(34, 34, 34, 0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 4px 12px var(--shadow);
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2rem;
-      background: #222;
-      box-shadow: 0 4px 12px var(--shadow);
+      gap: 1rem;
       font-weight: 600;
       font-size: 2.2rem;
       letter-spacing: 0.07em;
       user-select: none;
       text-transform: uppercase;
-      position: relative;
-      z-index: 1;
+      z-index: 1000;
+      color: var(--text-light);
     }
     .header-logo {
       height: 3.125rem; /* powiększone o 25% */
       user-select: none;
-      position: relative;
       filter: drop-shadow(0 0 6px var(--neon-glow));
       animation: smokyGlow 6s ease-in-out infinite;
-      transition: filter 0.3s ease;
-      z-index: 1;
+      cursor: default;
     }
     @keyframes smokyGlow {
       0%, 100% {
@@ -94,6 +99,7 @@
       transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
     }
+    /* Subtelna animacja na hover dla obrazków */
     .left img:hover, .right img:hover {
       transform: scale(1.05);
       filter: brightness(1.1);
@@ -272,6 +278,7 @@
 <body>
   <header>
     <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
+    Kenu the best Memecoin
   </header>
 
   <!-- Pierwszy blok -->

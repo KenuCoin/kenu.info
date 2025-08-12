@@ -168,36 +168,46 @@
       50% { opacity: 1; transform: translateY(-10px) scale(1.15); }
       100% { opacity: 0.3; transform: translateY(0) scale(1); }
     }
-    /* Efekt promyczków na Kenu */
+    /* Efekt kosmicznego rozbłysku na Kenu */
     .spark-text {
       position: relative;
       color: #a64dff;
       font-weight: 700;
+      text-shadow: 0 0 8px #a64dff, 0 0 15px #ff00ff;
+    }
+    .spark-text::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(166,77,255,0.4) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0.8);
+      animation: pulseGlow 2.5s infinite ease-in-out;
+      z-index: -1;
     }
     .spark-text::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 4px;
-      height: 4px;
-      background: #a64dff;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, rgba(166,77,255,0.7), transparent 30%);
       border-radius: 50%;
-      box-shadow:
-        0 -20px 10px #a64dff,
-        0 20px 10px #a64dff,
-        -20px 0 10px #a64dff,
-        20px 0 10px #a64dff,
-        -14px -14px 10px #a64dff,
-        14px -14px 10px #a64dff,
-        -14px 14px 10px #a64dff,
-        14px 14px 10px #a64dff;
-      transform: translate(-50%, -50%);
-      animation: sparkle 1.5s infinite ease-in-out;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: rotateRays 4s linear infinite;
+      z-index: -2;
     }
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    @keyframes pulseGlow {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+    @keyframes rotateRays {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
     }
   </style>
 </head>

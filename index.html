@@ -62,7 +62,6 @@
       filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
-    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -299,22 +298,16 @@
       }
     }
 
-    /* Glitch effect - tylko na .glitch, bez psucia obrazków */
+    /* Glitch efekt dla słowa "Kenu" */
     .glitch {
-      position: relative;
       color: #a64dff;
       font-weight: 700;
       display: inline-block;
       user-select: none;
-      transition: color 0.2s ease;
-    }
-
-    .glitch.glitch-active {
-      animation: glitch-flicker 1s linear infinite;
-      color: #ff00c8;
       text-shadow:
         2px 0 #00fff9,
         -2px 0 #ff00c8;
+      animation: glitch-flicker 1s linear infinite;
     }
 
     @keyframes glitch-flicker {
@@ -324,108 +317,59 @@
           -2px 0 #ff00c8;
         transform: translate(0, 0);
       }
-      20% {
+      50% {
         text-shadow:
-          3px -1px #00fff9,
-          -3px 1px #ff00c8;
-        transform: translate(-1px, 1px);
-      }
-      40% {
-        text-shadow:
-          1px 1px #00fff9,
-          -1px -1px #ff00c8;
-        transform: translate(1px, -1px);
-      }
-      60% {
-        text-shadow:
-          2px -2px #00fff9,
-          -2px 2px #ff00c8;
-        transform: translate(-1px, -1px);
-      }
-      80% {
-        text-shadow:
-          3px 1px #00fff9,
-          -3px -1px #ff00c8;
-        transform: translate(1px, 1px);
+          3px 0 #00fff9,
+          -3px 0 #ff00c8;
+        transform: translate(1px, 0);
       }
     }
   </style>
 </head>
 <body>
-  <div class="galaxy-background" id="galaxy"></div>
+  <div class="galaxy-background">
+    <!-- Dodajemy kilkanaście gwiazdek dla efektu -->
+    <div class="star" style="top: 10%; left: 20%; width: 3px; height: 3px; animation-delay: 0s;"></div>
+    <div class="star" style="top: 30%; left: 50%; width: 2px; height: 2px; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 70%; left: 80%; width: 4px; height: 4px; animation-delay: 0.7s;"></div>
+    <div class="star" style="top: 50%; left: 10%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+    <div class="star" style="top: 85%; left: 40%; width: 2px; height: 2px; animation-delay: 3s;"></div>
+    <div class="star" style="top: 20%; left: 70%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+  </div>
 
   <header>
-    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" draggable="false" />
+    <img src="https://i.ibb.co/2s1WnLn/logo.png" alt="Kenu logo" class="header-logo" draggable="false" />
+    <h1>Kenu the best Memecoin</h1>
   </header>
 
   <section class="intro">
     <div class="left">
-      <img src="https://i.ibb.co/qYzPRVq/3d-kenu-logo.png" alt="3D Kenu Logo" draggable="false" />
-    </div>
-    <div class="right">
       <h2>What is <span class="glitch">Kenu</span>?</h2>
       <p class="description">
-        Kenu is the new revolutionary <span class="highlight">memecoin</span> taking the crypto world by storm. Join the movement, earn rewards, and become part of the community.
+        Kenu is a community-driven meme token inspired by the spirit of <span class="highlight">innovation</span> and <span class="highlight">fun</span>.
       </p>
     </div>
-  </section>
-
-  <section class="reverse-intro">
     <div class="right">
-      <img src="https://i.ibb.co/cLnxHsh/kenu-rocket.png" alt="Kenu Rocket" draggable="false" />
-    </div>
-    <div class="left">
-      <h2>Why choose <span class="highlight">Kenu</span>?</h2>
-      <p class="description">
-        With fast transactions and a dedicated team, Kenu is set to become the go-to memecoin for crypto enthusiasts worldwide.
-      </p>
+      <img src="https://i.ibb.co/kXhPmYm/kenu-main.png" alt="Kenu coin image" draggable="false" />
     </div>
   </section>
 
   <section class="buy-kenu">
-    <h2>Buy <span class="highlight">Kenu</span> now!</h2>
+    <h2>Buy Kenu</h2>
     <div class="btn-container">
-      <a href="#" class="link-btn left-btn" tabindex="0">
+      <a href="#" class="link-btn left-btn">
         Buy on PancakeSwap
-        <img src="https://i.ibb.co/k3TJW2B/pancakeswap.png" alt="PancakeSwap" draggable="false" />
+        <img src="https://i.ibb.co/PYfK6Zs/pancakeswap-logo.png" alt="PancakeSwap logo" draggable="false" />
       </a>
-      <a href="#" class="link-btn right-btn" tabindex="0">
-        Buy on ApeSwap
-        <img src="https://i.ibb.co/wKXpN75/apeswap.png" alt="ApeSwap" draggable="false" />
+      <a href="#" class="link-btn right-btn">
+        Buy on BakerySwap
+        <img src="https://i.ibb.co/6wzPQnW/bakeryswap-logo.png" alt="BakerySwap logo" draggable="false" />
       </a>
     </div>
   </section>
 
   <footer>
-    &copy; 2024 <span class="glitch">Kenu</span> Team. All rights reserved.
+    &copy; 2025 <span class="glitch">Kenu</span> Memecoin. All rights reserved.
   </footer>
-
-  <script>
-    // Galaktyczny pył generowany dynamicznie
-    function createStar() {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.width = star.style.height = (Math.random() * 3 + 1) + 'px';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      star.style.animationDelay = (Math.random() * 6) + 's';
-      return star;
-    }
-    const galaxy = document.getElementById('galaxy');
-    for(let i=0; i<80; i++) {
-      galaxy.appendChild(createStar());
-    }
-
-    // Glitch animation trigger co 4 sekundy
-    function triggerGlitch() {
-      const glitches = document.querySelectorAll('.glitch');
-      glitches.forEach(el => {
-        el.classList.add('glitch-active');
-        setTimeout(() => el.classList.remove('glitch-active'), 1000);
-      });
-    }
-    setInterval(triggerGlitch, 4000);
-  </script>
 </body>
 </html>

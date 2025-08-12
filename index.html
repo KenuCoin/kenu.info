@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -74,7 +74,6 @@
       }
     }
 
-    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -104,12 +103,12 @@
       filter: brightness(1.1);
     }
     .right h2, .left h2 {
-      color: #fff;  /* biały tekst */
+      color: #fff;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem; /* mniejszy */
+      font-size: 2rem;
     }
     .description {
       font-size: 1rem;
@@ -142,6 +141,7 @@
       gap: 1rem;
       min-width: 220px;
       height: 48px;
+      cursor: pointer;
     }
     .link-btn.left-btn img {
       width: 120px;
@@ -273,29 +273,26 @@
       }
     }
 
-    /* Galaktyczny pył - tło */
     .galaxy-background {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none; /* nie przeszkadza w kliku */
+      pointer-events: none;
       overflow: hidden;
       z-index: 0;
       background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
     }
 
-    /* Pojedyncza gwiazda/pyłek */
     .star {
       position: absolute;
-      background: #a64dff; /* fioletowy */
+      background: #a64dff;
       border-radius: 50%;
       opacity: 0.7;
       animation: twinkle 6s infinite ease-in-out alternate;
       will-change: transform, opacity;
     }
     
-    /* Migotanie gwiazd */
     @keyframes twinkle {
       0% {
         opacity: 0.3;
@@ -371,6 +368,7 @@
   </footer>
 
   <script>
+    // Galaktyczny pył - gwiazdy
     const galaxy = document.getElementById('galaxy');
     const starsCount = 50;
 
@@ -378,20 +376,29 @@
       const star = document.createElement('div');
       star.classList.add('star');
 
-      // Losowa wielkość (1-3px)
       const size = Math.random() * 2 + 1;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
 
-      // Losowa pozycja
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
 
-      // Losowa animacja opóźniona, żeby nie migotały synchronicznie
       star.style.animationDelay = (Math.random() * 6) + 's';
 
       galaxy.appendChild(star);
     }
+
+    // Efekt dźwiękowy kliknięcia (futurystyczny ping)
+    const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA');
+
+    // Dodaj event do wszystkich przycisków .link-btn
+    document.querySelectorAll('.link-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Reset i odtwórz dźwięk
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
   </script>
 </body>
 </html>

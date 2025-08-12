@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -30,53 +30,37 @@
       min-height: 100vh;
       line-height: 1.5;
     }
-    /* NAGŁÓWEK */
     header {
-      position: sticky;
-      top: 0;
-      background: rgba(34, 34, 34, 0.85);
-      backdrop-filter: saturate(180%) blur(10px);
-      -webkit-backdrop-filter: saturate(180%) blur(10px);
-      box-shadow: 0 4px 12px var(--shadow);
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
-      padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
+      padding: 1rem 3rem;
+      background: rgba(30, 30, 30, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 0 20px var(--neon-glow);
       user-select: none;
-      text-transform: uppercase;
-      z-index: 1000;
-      color: var(--text-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      gap: 1rem;
+    }
+    header:hover {
+      background: rgba(30, 30, 30, 1);
+      box-shadow: 0 0 40px var(--neon-glow);
     }
     .header-logo {
       height: 3.125rem; /* powiększone o 25% */
       user-select: none;
       filter: drop-shadow(0 0 6px var(--neon-glow));
-      animation: smokyGlow 6s ease-in-out infinite;
-      cursor: default;
+      transition: filter 0.3s ease;
     }
-    @keyframes smokyGlow {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 6px var(--neon-glow))
-          drop-shadow(0 0 12px var(--neon-glow))
-          drop-shadow(0 0 20px var(--neon-glow));
-        transform: translate(0, 0);
-      }
-      50% {
-        filter:
-          drop-shadow(0 0 8px var(--neon-glow))
-          drop-shadow(0 0 16px var(--neon-glow))
-          drop-shadow(0 0 28px var(--neon-glow));
-        transform: translate(2px, -1.5px);
-      }
+    header:hover .header-logo {
+      filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
-    /* BLOKI LEWO/PRAWO */
+    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -99,7 +83,6 @@
       transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
     }
-    /* Subtelna animacja na hover dla obrazków */
     .left img:hover, .right img:hover {
       transform: scale(1.05);
       filter: brightness(1.1);
@@ -121,13 +104,12 @@
       color: #a64dff;
     }
 
-    /* PRZYCISKI NEONOWE */
     .link-btn {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;  /* zmniejszona wysokość */
+      padding: 0.5rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -143,9 +125,8 @@
       transform-origin: center center;
       gap: 1rem;
       min-width: 220px;
-      height: 48px; /* stała wysokość przycisku */
+      height: 48px;
     }
-    /* Duże ikony przy przyciskach */
     .link-btn.left-btn img {
       width: 120px;
       height: 120px;
@@ -160,14 +141,12 @@
       pointer-events: none;
       user-select: none;
     }
-    /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
       justify-content: flex-start;
     }
     .link-btn.right-btn {
       justify-content: flex-end;
     }
-
     .link-btn::before {
       content: "";
       position: absolute;
@@ -200,7 +179,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* OBRAZEK PEŁNEJ SZEROKOŚCI */
     .full-width-image {
       display: flex;
       justify-content: center;
@@ -217,7 +195,6 @@
       filter: brightness(1.1);
     }
 
-    /* Sekcja kupna */
     .buy-kenu {
       max-width: 900px;
       margin: 3rem auto 4rem;
@@ -278,7 +255,6 @@
 <body>
   <header>
     <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
-    Kenu the best Memecoin
   </header>
 
   <!-- Pierwszy blok -->

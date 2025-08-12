@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -67,6 +67,12 @@
       user-select: none;
       border-radius: 0;
       box-shadow: none;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      cursor: pointer;
+    }
+    .left img:hover, .right img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
     }
     .right h2, .left h2 {
       color: #fff;  /* biały tekst */
@@ -173,6 +179,13 @@
     .full-width-image img {
       max-width: 100%;
       height: auto;
+      user-select: none;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      cursor: pointer;
+    }
+    .full-width-image img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
     }
 
     /* Sekcja kupna */

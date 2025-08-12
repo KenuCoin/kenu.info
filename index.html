@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -82,10 +82,15 @@
       box-shadow: none;
       transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
+
+      /* Dodane dla 3D efektu */
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .left img:hover, .right img:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) rotateY(5deg) rotateX(3deg);
       filter: brightness(1.1);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
     .right h2, .left h2 {
       color: #fff;  /* biały tekst */
@@ -189,10 +194,15 @@
       height: auto;
       transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
+
+      /* Dodane dla 3D efektu */
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .full-width-image img:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) rotateY(5deg) rotateX(3deg);
       filter: brightness(1.1);
+      transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .buy-kenu {

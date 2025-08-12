@@ -62,6 +62,7 @@
       filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
+    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -298,94 +299,54 @@
       }
     }
 
-    /* Glitch efekt */
+    /* Glitch effect - tylko na .glitch, bez psucia obrazków */
     .glitch {
       position: relative;
       color: #a64dff;
       font-weight: 700;
-      /* Keep the text smooth */
-      text-shadow: none;
-    }
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      overflow: hidden;
-      color: #a64dff;
-      clip: rect(0, 0, 0, 0);
-    }
-    .glitch::before {
-      animation: glitch-anim 2s infinite linear alternate-reverse;
-      left: 2px;
-      text-shadow: -2px 0 #ff00c8;
-      clip: rect(0, 100%, 10%, 0);
-      opacity: 0.8;
-    }
-    .glitch::after {
-      animation: glitch-anim2 3s infinite linear alternate-reverse;
-      left: -2px;
-      text-shadow: -2px 0 #00fff9;
-      clip: rect(85%, 100%, 100%, 0);
-      opacity: 0.6;
-    }
-    .glitch.glitch-active::before,
-    .glitch.glitch-active::after {
-      clip: auto;
+      display: inline-block;
+      user-select: none;
+      transition: color 0.2s ease;
     }
 
-    @keyframes glitch-anim {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      20% {
-        clip: rect(0, 9999px, 50%, 0);
-        transform: translate(-2px, -2px);
-      }
-      40% {
-        clip: rect(0, 9999px, 10%, 0);
-        transform: translate(2px, 2px);
-      }
-      60% {
-        clip: rect(40%, 9999px, 70%, 0);
-        transform: translate(-2px, 2px);
-      }
-      80% {
-        clip: rect(10%, 9999px, 30%, 0);
-        transform: translate(2px, -2px);
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
+    .glitch.glitch-active {
+      animation: glitch-flicker 1s linear infinite;
+      color: #ff00c8;
+      text-shadow:
+        2px 0 #00fff9,
+        -2px 0 #ff00c8;
     }
-    @keyframes glitch-anim2 {
-      0% {
-        clip: rect(85%, 9999px, 100%, 0);
-        transform: translate(0);
+
+    @keyframes glitch-flicker {
+      0%, 100% {
+        text-shadow:
+          2px 0 #00fff9,
+          -2px 0 #ff00c8;
+        transform: translate(0, 0);
       }
       20% {
-        clip: rect(85%, 9999px, 100%, 0);
-        transform: translate(2px, 2px);
+        text-shadow:
+          3px -1px #00fff9,
+          -3px 1px #ff00c8;
+        transform: translate(-1px, 1px);
       }
       40% {
-        clip: rect(70%, 9999px, 90%, 0);
-        transform: translate(-2px, -2px);
+        text-shadow:
+          1px 1px #00fff9,
+          -1px -1px #ff00c8;
+        transform: translate(1px, -1px);
       }
       60% {
-        clip: rect(90%, 9999px, 100%, 0);
-        transform: translate(2px, -2px);
+        text-shadow:
+          2px -2px #00fff9,
+          -2px 2px #ff00c8;
+        transform: translate(-1px, -1px);
       }
       80% {
-        clip: rect(85%, 9999px, 100%, 0);
-        transform: translate(-2px, 2px);
-      }
-      100% {
-        clip: rect(85%, 9999px, 100%, 0);
-        transform: translate(0);
+        text-shadow:
+          3px 1px #00fff9,
+          -3px -1px #ff00c8;
+        transform: translate(1px, 1px);
       }
     }
   </style>
@@ -394,62 +355,69 @@
   <div class="galaxy-background" id="galaxy"></div>
 
   <header>
-    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
+    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" draggable="false" />
   </header>
 
-  <!-- Pierwszy blok -->
-  <div class="intro">
+  <section class="intro">
     <div class="left">
-      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
+      <img src="https://i.ibb.co/qYzPRVq/3d-kenu-logo.png" alt="3D Kenu Logo" draggable="false" />
     </div>
     <div class="right">
-      <h2>What is <span class="glitch" data-text="Kenu">Kenu</span>?</h2>
-      <div class="description">
-        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
-        Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
-      </div>
+      <h2>What is <span class="glitch">Kenu</span>?</h2>
+      <p class="description">
+        Kenu is the new revolutionary <span class="highlight">memecoin</span> taking the crypto world by storm. Join the movement, earn rewards, and become part of the community.
+      </p>
     </div>
-  </div>
+  </section>
 
-  <!-- Duży obrazek -->
-  <div class="full-width-image">
-    <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
-  </div>
-
-  <!-- Drugi blok -->
-  <div class="reverse-intro">
-    <div class="left">
-      <h2>Our mission!</h2>
-      <div class="description">
-        <span class="highlight">Kenu</span> was created with a clear mission: to bring joy, fun, and profit to its holders. Through memes, events, and creative campaigns, we want to create a memorable and engaging experience for all participants.
-      </div>
-    </div>
+  <section class="reverse-intro">
     <div class="right">
-      <img src="https://i.ibb.co/jvVqbsR4/Kenu-Crown.png" alt="Kenu Crown" />
+      <img src="https://i.ibb.co/cLnxHsh/kenu-rocket.png" alt="Kenu Rocket" draggable="false" />
     </div>
-  </div>
+    <div class="left">
+      <h2>Why choose <span class="highlight">Kenu</span>?</h2>
+      <p class="description">
+        With fast transactions and a dedicated team, Kenu is set to become the go-to memecoin for crypto enthusiasts worldwide.
+      </p>
+    </div>
+  </section>
 
-  <!-- Buy Kenu Section -->
-  <div class="buy-kenu">
-    <h2>Buy Kenu now!</h2>
+  <section class="buy-kenu">
+    <h2>Buy <span class="highlight">Kenu</span> now!</h2>
     <div class="btn-container">
-      <a href="#" class="link-btn left-btn" aria-label="Buy Kenu on Pancakeswap">
-        Buy on Pancakeswap
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Pancakeswap Icon" />
+      <a href="#" class="link-btn left-btn" tabindex="0">
+        Buy on PancakeSwap
+        <img src="https://i.ibb.co/k3TJW2B/pancakeswap.png" alt="PancakeSwap" draggable="false" />
       </a>
-      <a href="#" class="link-btn right-btn" aria-label="Buy Kenu on Trust Wallet">
-        Buy on Trust Wallet
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Trust Wallet Icon" />
+      <a href="#" class="link-btn right-btn" tabindex="0">
+        Buy on ApeSwap
+        <img src="https://i.ibb.co/wKXpN75/apeswap.png" alt="ApeSwap" draggable="false" />
       </a>
     </div>
-  </div>
+  </section>
 
   <footer>
-    &copy; 2024 <span class="glitch" data-text="Kenu">Kenu</span>. All rights reserved.
+    &copy; 2024 <span class="glitch">Kenu</span> Team. All rights reserved.
   </footer>
 
   <script>
-    // Skrypt do triggerowania glitch co kilka sekund tylko dla elementów .glitch
+    // Galaktyczny pył generowany dynamicznie
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.width = star.style.height = (Math.random() * 3 + 1) + 'px';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      star.style.animationDelay = (Math.random() * 6) + 's';
+      return star;
+    }
+    const galaxy = document.getElementById('galaxy');
+    for(let i=0; i<80; i++) {
+      galaxy.appendChild(createStar());
+    }
+
+    // Glitch animation trigger co 4 sekundy
     function triggerGlitch() {
       const glitches = document.querySelectorAll('.glitch');
       glitches.forEach(el => {
@@ -458,21 +426,6 @@
       });
     }
     setInterval(triggerGlitch, 4000);
-
-    // Galaktyczny pył - generowanie gwiazd na tle
-    const galaxy = document.getElementById('galaxy');
-    const starCount = 60;
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      const size = Math.random() * 2 + 1;
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDelay = (Math.random() * 6) + 's';
-      galaxy.appendChild(star);
-    }
   </script>
 </body>
 </html>

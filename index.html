@@ -15,6 +15,7 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      --neon-color: #6a11cb;
     }
     * {
       box-sizing: border-box;
@@ -36,15 +37,38 @@
       padding: 1.5rem 2rem;
       background: #222;
       box-shadow: 0 4px 12px var(--shadow);
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
       user-select: none;
       text-transform: uppercase;
+      /* Neon glow animation */
+      animation: neonGlow 3s ease-in-out infinite alternate;
+      border-radius: var(--border-radius);
     }
-    .header-logo {
-      height: 3.5rem; /* powiększone o 25% */
+    header img {
+      width: 150px; /* bazowa szerokość */
+      transform: scale(1.25); /* powiększenie o 25% */
       user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        box-shadow:
+          0 0 8px #8a4dff,
+          0 0 20px #8a4dff,
+          0 0 30px #6a11cb,
+          0 0 40px #6a11cb,
+          0 0 50px #6a11cb,
+          0 0 60px #6a11cb;
+      }
+      100% {
+        box-shadow:
+          0 0 14px #b173ff,
+          0 0 30px #b173ff,
+          0 0 40px #8a4dff,
+          0 0 50px #8a4dff,
+          0 0 60px #8a4dff,
+          0 0 70px #8a4dff;
+      }
     }
 
     /* BLOKI LEWO/PRAWO */
@@ -69,12 +93,12 @@
       box-shadow: none;
     }
     .right h2, .left h2 {
-      color: #fff;  /* biały tekst */
+      color: #fff;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-      font-size: 2rem; /* mniejszy */
+      font-size: 2rem;
     }
     .description {
       font-size: 1rem;
@@ -91,7 +115,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;  /* zmniejszona wysokość */
+      padding: 0.5rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -107,9 +131,8 @@
       transform-origin: center center;
       gap: 1rem;
       min-width: 220px;
-      height: 48px; /* stała wysokość przycisku */
+      height: 48px;
     }
-    /* Duże ikony przy przyciskach */
     .link-btn.left-btn img {
       width: 120px;
       height: 120px;
@@ -124,7 +147,6 @@
       pointer-events: none;
       user-select: none;
     }
-    /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
       justify-content: flex-start;
     }
@@ -235,7 +257,7 @@
 </head>
 <body>
   <header>
-    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
+    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Memcoin Logo" />
   </header>
 
   <!-- Pierwszy blok -->
@@ -290,4 +312,3 @@
   </footer>
 </body>
 </html>
-

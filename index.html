@@ -276,25 +276,25 @@
     /* Pojedyncza gwiazda/pyłek */
     .star {
       position: absolute;
-      background: white;
+      background: #a64dff; /* fioletowy */
       border-radius: 50%;
-      opacity: 0.8;
+      opacity: 0.7;
       animation: twinkle 6s infinite ease-in-out alternate;
       will-change: transform, opacity;
     }
-
+    
     /* Migotanie gwiazd */
     @keyframes twinkle {
       0% {
-        opacity: 0.2;
+        opacity: 0.3;
         transform: translateY(0) scale(1);
       }
       50% {
         opacity: 1;
-        transform: translateY(-10px) scale(1.2);
+        transform: translateY(-10px) scale(1.15);
       }
       100% {
-        opacity: 0.2;
+        opacity: 0.3;
         transform: translateY(0) scale(1);
       }
     }
@@ -383,3 +383,4 @@
   </script>
 </body>
 </html>
+

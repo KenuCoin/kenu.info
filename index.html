@@ -62,7 +62,6 @@
       filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
-    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -298,6 +297,97 @@
         transform: translateY(0) scale(1);
       }
     }
+
+    /* Glitch efekt */
+    .glitch {
+      position: relative;
+      color: #a64dff;
+      font-weight: 700;
+      /* Keep the text smooth */
+      text-shadow: none;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #a64dff;
+      clip: rect(0, 0, 0, 0);
+    }
+    .glitch::before {
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+      left: 2px;
+      text-shadow: -2px 0 #ff00c8;
+      clip: rect(0, 100%, 10%, 0);
+      opacity: 0.8;
+    }
+    .glitch::after {
+      animation: glitch-anim2 3s infinite linear alternate-reverse;
+      left: -2px;
+      text-shadow: -2px 0 #00fff9;
+      clip: rect(85%, 100%, 100%, 0);
+      opacity: 0.6;
+    }
+    .glitch.glitch-active::before,
+    .glitch.glitch-active::after {
+      clip: auto;
+    }
+
+    @keyframes glitch-anim {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      20% {
+        clip: rect(0, 9999px, 50%, 0);
+        transform: translate(-2px, -2px);
+      }
+      40% {
+        clip: rect(0, 9999px, 10%, 0);
+        transform: translate(2px, 2px);
+      }
+      60% {
+        clip: rect(40%, 9999px, 70%, 0);
+        transform: translate(-2px, 2px);
+      }
+      80% {
+        clip: rect(10%, 9999px, 30%, 0);
+        transform: translate(2px, -2px);
+      }
+      100% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+    }
+    @keyframes glitch-anim2 {
+      0% {
+        clip: rect(85%, 9999px, 100%, 0);
+        transform: translate(0);
+      }
+      20% {
+        clip: rect(85%, 9999px, 100%, 0);
+        transform: translate(2px, 2px);
+      }
+      40% {
+        clip: rect(70%, 9999px, 90%, 0);
+        transform: translate(-2px, -2px);
+      }
+      60% {
+        clip: rect(90%, 9999px, 100%, 0);
+        transform: translate(2px, -2px);
+      }
+      80% {
+        clip: rect(85%, 9999px, 100%, 0);
+        transform: translate(-2px, 2px);
+      }
+      100% {
+        clip: rect(85%, 9999px, 100%, 0);
+        transform: translate(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -313,7 +403,7 @@
       <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
-      <h2>What is Kenu?</h2>
+      <h2>What is <span class="glitch" data-text="Kenu">Kenu</span>?</h2>
       <div class="description">
         <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
@@ -331,53 +421,56 @@
     <div class="left">
       <h2>Our mission!</h2>
       <div class="description">
-        <span class="highlight">Kenu</span> We want Kenu to be not just an investment tool, but above all a source of entertainment and inspiration. Our development team actively supports the project by organizing airdrops, viral post reach, rewards, and special events. Join our community today — share a post on "X", tag Kenu, and show the world its potential in the crypto space!
+        <span class="highlight">Kenu</span> was created with a clear mission: to bring joy, fun, and profit to its holders. Through memes, events, and creative campaigns, we want to create a memorable and engaging experience for all participants.
       </div>
     </div>
     <div class="right">
-      <img src="https://i.ibb.co/7tyQcLv4/Kenu-Suit2.png" alt="Kenu Suit" />
+      <img src="https://i.ibb.co/jvVqbsR4/Kenu-Crown.png" alt="Kenu Crown" />
     </div>
   </div>
 
-  <!-- Sekcja kupna -->
-  <section class="buy-kenu">
-    <h2>Where can I buy Kenu?</h2>
+  <!-- Buy Kenu Section -->
+  <div class="buy-kenu">
+    <h2>Buy Kenu now!</h2>
     <div class="btn-container">
-      <a href="#" class="link-btn left-btn">
-        Buy on Exchange 1
-        <img src="https://i.ibb.co/x8GN0pQm/Raydium-icon.png" alt="Raydium" />
+      <a href="#" class="link-btn left-btn" aria-label="Buy Kenu on Pancakeswap">
+        Buy on Pancakeswap
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Pancakeswap Icon" />
       </a>
-      <a href="#" class="link-btn right-btn">
-        <img src="https://i.ibb.co/gFbNggy0/Pump-icon.png" alt="Pump" />
-        Buy on Exchange 2
+      <a href="#" class="link-btn right-btn" aria-label="Buy Kenu on Trust Wallet">
+        Buy on Trust Wallet
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Trust Wallet Icon" />
       </a>
     </div>
-  </section>
+  </div>
 
   <footer>
-    &copy; 2025 Kenu Memecoin. All rights reserved.
+    &copy; 2024 <span class="glitch" data-text="Kenu">Kenu</span>. All rights reserved.
   </footer>
 
   <script>
-    const galaxy = document.getElementById('galaxy');
-    const starsCount = 50;
+    // Skrypt do triggerowania glitch co kilka sekund tylko dla elementów .glitch
+    function triggerGlitch() {
+      const glitches = document.querySelectorAll('.glitch');
+      glitches.forEach(el => {
+        el.classList.add('glitch-active');
+        setTimeout(() => el.classList.remove('glitch-active'), 1000);
+      });
+    }
+    setInterval(triggerGlitch, 4000);
 
-    for(let i=0; i<starsCount; i++) {
+    // Galaktyczny pył - generowanie gwiazd na tle
+    const galaxy = document.getElementById('galaxy');
+    const starCount = 60;
+    for (let i = 0; i < starCount; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
-
-      // Losowa wielkość (1-3px)
       const size = Math.random() * 2 + 1;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
-
-      // Losowa pozycja
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
-
-      // Losowa animacja opóźniona, żeby nie migotały synchronicznie
       star.style.animationDelay = (Math.random() * 6) + 's';
-
       galaxy.appendChild(star);
     }
   </script>

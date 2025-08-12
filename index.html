@@ -15,6 +15,7 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+      --neon-glow: #6a11cb;
     }
     * {
       box-sizing: border-box;
@@ -33,21 +34,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 2rem;
-      background: #222;
-      box-shadow: 0 4px 12px var(--shadow);
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
+      padding: 1rem 3rem;
+      background: rgba(30, 30, 30, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 0 20px var(--neon-glow);
       user-select: none;
-      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      gap: 1rem;
+    }
+    header:hover {
+      background: rgba(30, 30, 30, 1);
+      box-shadow: 0 0 40px var(--neon-glow);
     }
     .header-logo {
       height: 3.125rem; /* powiększone o 25% */
       user-select: none;
+      filter: drop-shadow(0 0 6px var(--neon-glow));
+      transition: filter 0.3s ease;
+    }
+    header:hover .header-logo {
+      filter: drop-shadow(0 0 12px var(--neon-glow));
     }
 
-    /* BLOKI LEWO/PRAWO */
+    /* Reszta CSS bez zmian, dodana subtelna animacja hover dla obrazków (z poprzedniej aktualizacji) */
     .intro, .reverse-intro {
       display: flex;
       max-width: 900px;
@@ -67,7 +80,7 @@
       user-select: none;
       border-radius: 0;
       box-shadow: none;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
     }
     .left img:hover, .right img:hover {
@@ -91,13 +104,12 @@
       color: #a64dff;
     }
 
-    /* PRZYCISKI NEONOWE */
     .link-btn {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.5rem 1.8rem;  /* zmniejszona wysokość */
+      padding: 0.5rem 1.8rem;
       border-radius: 8px;
       font-weight: 600;
       text-align: center;
@@ -113,9 +125,8 @@
       transform-origin: center center;
       gap: 1rem;
       min-width: 220px;
-      height: 48px; /* stała wysokość przycisku */
+      height: 48px;
     }
-    /* Duże ikony przy przyciskach */
     .link-btn.left-btn img {
       width: 120px;
       height: 120px;
@@ -130,14 +141,12 @@
       pointer-events: none;
       user-select: none;
     }
-    /* Ustawienia wyrównania tekstu i obrazków */
     .link-btn.left-btn {
       justify-content: flex-start;
     }
     .link-btn.right-btn {
       justify-content: flex-end;
     }
-
     .link-btn::before {
       content: "";
       position: absolute;
@@ -170,7 +179,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* OBRAZEK PEŁNEJ SZEROKOŚCI */
     .full-width-image {
       display: flex;
       justify-content: center;
@@ -179,8 +187,7 @@
     .full-width-image img {
       max-width: 100%;
       height: auto;
-      user-select: none;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: transform 0.3s ease, filter 0.3s ease;
       cursor: pointer;
     }
     .full-width-image img:hover {
@@ -188,7 +195,6 @@
       filter: brightness(1.1);
     }
 
-    /* Sekcja kupna */
     .buy-kenu {
       max-width: 900px;
       margin: 3rem auto 4rem;

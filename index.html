@@ -169,10 +169,10 @@
       perspective: 1px;
     }
     .full-width-image img {
-      position: relative; /* absolute usunięte */
+      position: relative;
       width: auto;
-      height: 380px; /* zachowujemy wysokość z oryginalnego rozmiaru */
-      object-fit: contain;
+      height: auto;
+      object-fit: none;
       will-change: transform;
       pointer-events: none;
       user-select: none;
@@ -295,7 +295,6 @@
     const parallaxImg = document.querySelector('.full-width-image img');
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      // efekt paralaksy: przesunięcie pionowe max 30px dla subtelności
       const maxShift = 30;
       const shift = Math.min(scrollY / 10, maxShift);
       parallaxImg.style.transform = `translateY(${shift}px)`;

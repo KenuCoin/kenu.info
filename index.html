@@ -15,7 +15,6 @@
       --border-radius: 12px;
       --shadow: rgba(0, 0, 0, 0.7);
       --neon-gradient: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
-      --neon-color: #6a11cb;
     }
     * {
       box-sizing: border-box;
@@ -39,36 +38,13 @@
       box-shadow: 0 4px 12px var(--shadow);
       user-select: none;
       text-transform: uppercase;
-      /* Neon glow animation */
-      animation: neonGlow 3s ease-in-out infinite alternate;
-      border-radius: var(--border-radius);
+      /* bez tekstu, tylko logo */
     }
     header img {
-      width: 150px; /* bazowa szerokość */
-      transform: scale(1.25); /* powiększenie o 25% */
+      width: calc(100% * 1.25);
+      max-width: 220px; /* maksymalna szerokość */
+      height: auto;
       user-select: none;
-      pointer-events: none;
-    }
-
-    @keyframes neonGlow {
-      0% {
-        box-shadow:
-          0 0 8px #8a4dff,
-          0 0 20px #8a4dff,
-          0 0 30px #6a11cb,
-          0 0 40px #6a11cb,
-          0 0 50px #6a11cb,
-          0 0 60px #6a11cb;
-      }
-      100% {
-        box-shadow:
-          0 0 14px #b173ff,
-          0 0 30px #b173ff,
-          0 0 40px #8a4dff,
-          0 0 50px #8a4dff,
-          0 0 60px #8a4dff,
-          0 0 70px #8a4dff;
-      }
     }
 
     /* BLOKI LEWO/PRAWO */
@@ -153,7 +129,6 @@
     .link-btn.right-btn {
       justify-content: flex-end;
     }
-
     .link-btn::before {
       content: "";
       position: absolute;
@@ -186,15 +161,31 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* OBRAZEK PEŁNEJ SZEROKOŚCI */
+    /* OBRAZEK PEŁNEJ SZEROKOŚCI Z PARALLAX */
     .full-width-image {
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+      height: 400px; /* wysokość kontenera */
       display: flex;
       justify-content: center;
-      margin: 2rem 0;
+      align-items: center;
+      perspective: 1px;
     }
     .full-width-image img {
-      max-width: 100%;
-      height: auto;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      min-width: 100%;
+      height: 500px; /* trochę większa niż kontener dla efektu paralaksy */
+      object-fit: cover;
+      will-change: transform;
+      transition: transform 0.1s ease-out;
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
     }
 
     /* Sekcja kupna */
@@ -268,13 +259,13 @@
     <div class="right">
       <h2>What is Kenu?</h2>
       <div class="description">
-        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br><br>
+        <span class="highlight">Kenu</span> is a new, dynamic memecoin created for an engaged community. We believe the strength of a community lies in its creativity, commitment, and shared goals. The power of Kenu is extraordinary - its adoption grows day by day, building an increasingly strong viral momentum. Kenu is conquering both the real and virtual worlds.<br /><br />
         Kenu is not just a unique character - it’s a symbol of a new era of creativity and freedom of expression. Join the Kenu community and become part of a movement that’s changing the rules of the game, offering unlimited possibilities!
       </div>
     </div>
   </div>
 
-  <!-- Duży obrazek -->
+  <!-- Duży obrazek z efektem paralaksy -->
   <div class="full-width-image">
     <img src="https://i.ibb.co/5XqmnmjH/Kenu-car-PNG-transparent.png" alt="Kenu Car" />
   </div>
@@ -310,5 +301,15 @@
   <footer>
     &copy; 2025 Kenu Memecoin. All rights reserved.
   </footer>
+
+  <script>
+    // Paralaksa prosty efekt przesuwania obrazka podczas scrolla
+    const parallaxImg = document.querySelector('.full-width-image img');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      // przesunięcie w osi Y, dzielone przez 3, żeby efekt był subtelny
+      parallaxImg.style.transform = `translateX(-50%) translateY(${scrollY / 3}px)`;
+    });
+  </script>
 </body>
 </html>

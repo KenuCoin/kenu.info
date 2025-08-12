@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -29,6 +29,8 @@
       flex-direction: column;
       min-height: 100vh;
       line-height: 1.5;
+      position: relative;
+      z-index: 1;
     }
     header {
       display: flex;
@@ -67,6 +69,8 @@
       margin: 3rem auto;
       gap: 2rem;
       padding: 0 1rem;
+      position: relative;
+      z-index: 1;
     }
     .left, .right {
       flex: 1;
@@ -183,6 +187,8 @@
       display: flex;
       justify-content: center;
       margin: 2rem 0;
+      position: relative;
+      z-index: 1;
     }
     .full-width-image img {
       max-width: 100%;
@@ -200,6 +206,8 @@
       margin: 3rem auto 4rem;
       padding: 0 1rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .buy-kenu h2 {
       color: #fff;
@@ -224,6 +232,8 @@
       user-select: none;
       border-top: 1px solid #2c2c2c;
       margin-top: auto;
+      position: relative;
+      z-index: 1;
     }
 
     @media (max-width: 900px) {
@@ -251,41 +261,47 @@
       }
     }
 
-    /* --- Loader styles --- */
-    #page-loader {
+    /* Galaktyczny pył - tło */
+    .galaxy-background {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background: var(--background);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      pointer-events: none; /* nie przeszkadza w kliku */
+      overflow: hidden;
+      z-index: 0;
+      background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
     }
 
-    .spinner {
-      border: 5px solid #444;
-      border-top: 5px solid var(--primary);
+    /* Pojedyncza gwiazda/pyłek */
+    .star {
+      position: absolute;
+      background: white;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
+      opacity: 0.8;
+      animation: twinkle 6s infinite ease-in-out alternate;
+      will-change: transform, opacity;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
+    /* Migotanie gwiazd */
+    @keyframes twinkle {
+      0% {
+        opacity: 0.2;
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.2);
+      }
+      100% {
+        opacity: 0.2;
+        transform: translateY(0) scale(1);
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Loader -->
-  <div id="page-loader">
-    <div class="spinner"></div>
-  </div>
+  <div class="galaxy-background" id="galaxy"></div>
 
   <header>
     <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
@@ -343,11 +359,27 @@
   </footer>
 
   <script>
-    // Ukrycie loadera po załadowaniu całej strony
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('page-loader');
-      loader.style.display = 'none';
-    });
+    const galaxy = document.getElementById('galaxy');
+    const starsCount = 50;
+
+    for(let i=0; i<starsCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+
+      // Losowa wielkość (1-3px)
+      const size = Math.random() * 2 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      // Losowa pozycja
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+
+      // Losowa animacja opóźniona, żeby nie migotały synchronicznie
+      star.style.animationDelay = (Math.random() * 6) + 's';
+
+      galaxy.appendChild(star);
+    }
   </script>
 </body>
 </html>

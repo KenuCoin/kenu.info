@@ -1,23 +1,37 @@
 let fluidReady = false;
-let isFluidInitialized = false; // NOWA FLAGA: Zapobiega wielokrotnemu wywołaniu initFluid
+let isFluidInitialized = false; // Zapobiega wielokrotnemu wywołaniu initFluid
+let isFramebuffersInitialized = false; // Zapobiega wielokrotnemu initFramebuffers
 
 const initFluid = () => {
-  console.log('Początek initFluid:', Date.now()); // DODANO: Log początku inicjalizacji
+  console.log('Początek initFluid:', Date.now());
   if (isFluidInitialized) {
     console.log('initFluid już wywołane, pomijanie.');
     return;
   }
-  isFluidInitialized = true; // Ustawiamy flagę, aby zapobiec ponownemu wywołaniu
+  isFluidInitialized = true;
 
   const canvas = document.getElementById('fluid');
+  // DODANO: Sprawdzenie, czy płótno istnieje
+  if (!canvas) {
+    console.error('Błąd: Nie znaleziono elementu canvas o id="fluid"!');
+    return;
+  }
 
   function showFallback(msg) {
     const f = document.getElementById('fallback');
-    if (msg) f.textContent = msg;
-    f.style.display = 'grid';
+    if (f) {
+      if (msg) f.textContent = msg;
+      f.style.display = 'grid';
+    } else {
+      console.error('Błąd: Nie znaleziono elementu fallback!');
+    }
   }
 
-  resizeCanvas();
+  // ZMIENIONO: Wywołanie resizeCanvas z logowaniem
+  console.log('Wywołanie resizeCanvas w initFluid');
+  if (!resizeCanvas()) {
+    console.warn('resizeCanvas nie zmienił rozmiaru podczas inicjalizacji.');
+  }
 
   let config = {
     SIM_RESOLUTION: 128,
@@ -66,7 +80,7 @@ const initFluid = () => {
   }
 
   function getWebGLContext(canvas) {
-    console.log('Inicjalizacja WebGL:', Date.now()); // DODANO: Log inicjalizacji WebGL
+    console.log('Inicjalizacja WebGL:', Date.now());
     const params = { alpha: true, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: false };
 
     let gl = canvas.getContext('webgl2', params);
@@ -74,7 +88,7 @@ const initFluid = () => {
     if (!isWebGL2)
       gl = canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
     if (!gl) {
-      console.error('Błąd: Nie udało się zainicjalizować WebGL!'); // DODANO: Log błędu
+      console.error('Błąd: Nie udało się zainicjalizować WebGL!');
       return null;
     }
 
@@ -208,7 +222,7 @@ const initFluid = () => {
     gl.compileShader(shader);
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) console.trace(gl.getShaderInfoLog(shader));
     return shader;
-  };
+  }
 
   function addKeywords(source, keywords) {
     if (keywords == null) return source;
@@ -523,10 +537,17 @@ const initFluid = () => {
   const displayMaterial = new Material(baseVertexShader, displayShaderSource);
 
   function initFramebuffers() {
-    console.log('Początek initFramebuffers:', Date.now()); // DODANO: Log początku
+    console.log('Początek initFramebuffers:', Date.now());
+    // DODANO: Zapobieganie wielokrotnemu wywołaniu
+    if (isFramebuffersInitialized) {
+      console.log('initFramebuffers już wywołane, pomijanie.');
+      return;
+    }
+    isFramebuffersInitialized = true;
+
     let simRes = getResolution(config.SIM_RESOLUTION);
     let dyeRes = getResolution(config.DYE_RESOLUTION);
-    console.log('Rozdzielczości:', { simRes, dyeRes }); // DODANO: Log rozdzielczości
+    console.log('Rozdzielczości:', { simRes, dyeRes });
     const texType = ext.halfFloatTexType;
     const rgba = ext.formatRGBA;
     const rg = ext.formatRG;
@@ -537,16 +558,16 @@ const initFluid = () => {
       dye = createDoubleFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
     else
       dye = resizeDoubleFBO(dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
-    console.log('dye zainicjalizowane:', dye); // DODANO: Log bufora dye
+    console.log('dye zainicjalizowane:', dye);
     if (velocity == null)
       velocity = createDoubleFBO(simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
     else
       velocity = resizeDoubleFBO(velocity, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
-    console.log('velocity zainicjalizowane:', velocity); // DODANO: Log bufora velocity
+    console.log('velocity zainicjalizowane:', velocity);
     divergence = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     curl = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     pressure = createDoubleFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
-    console.log('Koniec initFramebuffers:', Date.now()); // DODANO: Log końca
+    console.log('Koniec initFramebuffers:', Date.now());
   }
 
   function createFBO(w, h, internalFormat, format, type, param) {
@@ -602,19 +623,25 @@ const initFluid = () => {
 
   updateKeywords();
   initFramebuffers();
+  // USUNIĘTO: initialSplat() - efekt kursora tylko przy interakcji z myszą
 
   let lastUpdateTime = Date.now();
   let colorUpdateTimer = 0.0;
 
   function update() {
-    console.log('Początek update:', Date.now()); // DODANO: Log początku
+    console.log('Początek update:', Date.now());
     const dt = calcDeltaTime();
-    if (resizeCanvas()) initFramebuffers();
+    // ZMIENIONO: Wywołanie initFramebuffers tylko przy koniecznej zmianie rozmiaru
+    if (resizeCanvas() && isFramebuffersInitialized) {
+      console.log('Zmiana rozmiaru płótna, ponowne wywołanie initFramebuffers');
+      isFramebuffersInitialized = false; // Reset flagi
+      initFramebuffers();
+    }
     updateColors(dt);
     applyInputs();
     step(dt);
     render(null);
-    console.log('Koniec update:', Date.now()); // DODANO: Log końca
+    console.log('Koniec update:', Date.now());
     requestAnimationFrame(update);
   }
 
@@ -627,11 +654,20 @@ const initFluid = () => {
   }
 
   function resizeCanvas() {
+    // DODANO: Sprawdzenie, czy płótno istnieje
+    if (!canvas) {
+      console.error('Błąd: Płótno nie istnieje w resizeCanvas!');
+      return false;
+    }
     let width = scaleByPixelRatio(canvas.clientWidth);
     let height = scaleByPixelRatio(canvas.clientHeight);
     if (canvas.width != width || canvas.height != height) {
-      canvas.width = width; canvas.height = height; return true;
+      console.log('resizeCanvas: Zmiana rozmiaru płótna', { oldWidth: canvas.width, oldHeight: canvas.height, newWidth: width, newHeight: height });
+      canvas.width = width;
+      canvas.height = height;
+      return true;
     }
+    console.log('resizeCanvas: Brak zmiany rozmiaru');
     return false;
   }
 
@@ -646,6 +682,11 @@ const initFluid = () => {
   function applyInputs() { pointers.forEach(p => { if (p.moved) { p.moved = false; splatPointer(p); } }); }
 
   function step(dt) {
+    // DODANO: Sprawdzenie gotowości buforów
+    if (!velocity || !dye) {
+      console.warn('Błąd: Bufory velocity lub dye nie są zainicjalizowane w step!', { velocity, dye });
+      return;
+    }
     gl.disable(gl.BLEND);
     curlProgram.bind();
     gl.uniform2f(curlProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY);
@@ -704,14 +745,22 @@ const initFluid = () => {
   }
 
   function render(target) {
+    // DODANO: Sprawdzenie gotowości buforów i programu
+    if (!dye || !displayMaterial) {
+      console.warn('Błąd: Bufory lub displayMaterial nie są zainicjalizowane w render!', { dye, displayMaterial });
+      return;
+    }
+    console.log('Początek render:', Date.now());
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.enable(gl.BLEND);
     drawDisplay(target);
+    console.log('Koniec render:', Date.now());
   }
 
   function drawDisplay(target) {
     let width = target == null ? gl.drawingBufferWidth : target.width;
     let height = target == null ? gl.drawingBufferHeight : target.height;
+    console.log('drawDisplay: Rozmiar renderowania', { width, height });
     displayMaterial.bind();
     if (config.SHADING) gl.uniform2f(displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height);
     gl.uniform1i(displayMaterial.uniforms.uTexture, dye.read.attach(0));
@@ -720,14 +769,14 @@ const initFluid = () => {
 
   function splatPointer(pointer) {
     if (!pointer) {
-      console.warn('Błąd: Wskaźnik jest niezdefiniowany!'); // DODANO: Sprawdzenie wskaźnika
+      console.warn('Błąd: Wskaźnik jest niezdefiniowany!');
       return;
     }
     if (!velocity || !dye || !splatProgram) {
-      console.warn('Błąd: Bufory lub program WebGL nie są gotowe!', { velocity, dye, splatProgram }); // DODANO: Sprawdzenie buforów
+      console.warn('Błąd: Bufory lub program WebGL nie są gotowe!', { velocity, dye, splatProgram });
       return;
     }
-    console.log('Wywołanie splatPointer:', pointer); // DODANO: Log
+    console.log('Wywołanie splatPointer:', pointer);
     let dx = pointer.deltaX * config.SPLAT_FORCE;
     let dy = pointer.deltaY * config.SPLAT_FORCE;
     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
@@ -742,7 +791,12 @@ const initFluid = () => {
   }
 
   function splat(x, y, dx, dy, color) {
-    console.log('Wywołanie splat:', { x, y, dx, dy, color }); // DODANO: Log
+    // DODANO: Sprawdzenie gotowości buforów
+    if (!velocity || !dye || !splatProgram) {
+      console.warn('Błąd: Bufory lub program WebGL nie są gotowe w splat!', { velocity, dye, splatProgram });
+      return;
+    }
+    console.log('Wywołanie splat:', { x, y, dx, dy, color });
     splatProgram.bind();
     gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
     gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
@@ -767,17 +821,17 @@ const initFluid = () => {
 
   window.addEventListener('mousemove', e => {
     if (!fluidReady) {
-      console.log('mousemove zignorowane: fluidReady = false'); // DODANO: Log
+      console.log('mousemove zignorowane: fluidReady = false');
       return;
     }
     let pointer = pointers[0];
     if (!pointer) {
-      console.warn('Błąd: pointers[0] jest niezdefiniowany!'); // DODANO: Sprawdzenie
+      console.warn('Błąd: pointers[0] jest niezdefiniowany!');
       return;
     }
     let posX = scaleByPixelRatio(e.clientX);
     let posY = scaleByPixelRatio(e.clientY);
-    console.log('mousemove: Aktualizacja wskaźnika', { posX, posY, pointer }); // DODANO: Log
+    console.log('mousemove: Aktualizacja wskaźnika', { posX, posY, pointer });
     let color = pointer.color;
     updatePointerMoveData(pointer, posX, posY, color);
   });
@@ -792,7 +846,7 @@ const initFluid = () => {
 
   window.addEventListener('touchmove', e => {
     if (!fluidReady) {
-      console.log('touchmove zignorowane: fluidReady = false'); // DODANO: Log
+      console.log('touchmove zignorowane: fluidReady = false');
       return;
     }
     const touches = e.targetTouches;
@@ -801,7 +855,7 @@ const initFluid = () => {
       if (!pointer) continue;
       let posX = scaleByPixelRatio(touches[i].clientX);
       let posY = scaleByPixelRatio(touches[i].clientY);
-      console.log('touchmove: Aktualizacja wskaźnika', { posX, posY, pointer }); // DODANO: Log
+      console.log('touchmove: Aktualizacja wskaźnika', { posX, posY, pointer });
       updatePointerMoveData(pointer, posX, posY, pointer.color);
     }
   }, { passive: true });
@@ -862,25 +916,12 @@ const initFluid = () => {
   function scaleByPixelRatio(input) { let pixelRatio = window.devicePixelRatio || 1; return Math.floor(input * pixelRatio); }
   function hashCode(s) { if (s.length == 0) return 0; let hash = 0; for (let i = 0; i < s.length; i++) { hash = (hash << 5) - hash + s.charCodeAt(i); hash |= 0; } return hash; }
 
-  function seed() {
-    for (let i = 0; i < 8; i++) {
-      const x = Math.random();
-      const y = Math.random();
-      const dx = (Math.random() - 0.5) * 50;
-      const dy = (Math.random() - 0.5) * 50;
-      const col = generateColor(); col.r *= 10; col.g *= 10; col.b *= 10;
-      splat(x, y, dx, dy, col);
-    }
-  }
-
-  updateKeywords();
-  initFramebuffers();
-  // seed(); // ZAKOMENTOWANE: Możesz odkomentować, jeśli chcesz początkowe splaty
   update();
+  // ZMIENIONO: Opóźnienie ustawione na 200 ms
   setTimeout(() => {
-    fluidReady = true; // PRZENIESIONO: Ustawiane z opóźnieniem 100 ms
-    console.log('fluidReady ustawione na true:', Date.now()); // DODANO: Log
-  }, 100);
+    fluidReady = true;
+    console.log('fluidReady ustawione na true:', Date.now());
+  }, 200);
 };
 
 // ZMIENIONO: Listener z opcją { once: true } i logiem

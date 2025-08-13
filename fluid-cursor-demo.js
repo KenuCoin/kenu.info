@@ -737,34 +737,32 @@
         let posX = scaleByPixelRatio(e.clientX); let posY = scaleByPixelRatio(e.clientY);
         let color = pointer.color; updatePointerMoveData(pointer, posX, posY, color);
       });
-      window.addEventListener('touchstart', e => {
-        const touches = e.targetTouches; let pointer = pointers[0];
-        for (let i = 0; i < touches.length; i++) {
-          let posX = scaleByPixelRatio(touches[i].clientX); let posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerDownData(pointer, touches[i].identifier, posX, posY); clickSplat(pointer);
-        }
-      });
-// Zdarzenie touchmove tylko dla fluid effect, nie blokując scrolla
-        window.addEventListener('touchmove', e => {
+        window.addEventListener('touchstart', e => {
             const touches = e.targetTouches;
-            let pointer = pointers[0];
-            if (!pointer) {
-                // jeśli nie ma jeszcze pointera, dodaj go
-                pointer = { id: touches[0].identifier, x: 0, y: 0, dx: 0, dy: 0, color: generateColor() };
+            for (let i = 0; i < touches.length; i++) {
+                let pointer = { id: touches[i].identifier, x: scaleByPixelRatio(touches[i].clientX), y: scaleByPixelRatio(touches[i].clientY), dx:0, dy:0, color: generateColor() };
                 pointers.push(pointer);
             }
+        }, { passive: true });
         
+        window.addEventListener('touchmove', e => {
+            const touches = e.targetTouches;
             for (let i = 0; i < touches.length; i++) {
+                const pointer = pointers.find(p => p.id === touches[i].identifier);
+                if (!pointer) continue;
                 let posX = scaleByPixelRatio(touches[i].clientX);
                 let posY = scaleByPixelRatio(touches[i].clientY);
                 updatePointerMoveData(pointer, posX, posY, pointer.color);
             }
-        }, { passive: true }); // passive:true = scroll działa normalnie
+        }, { passive: true });
+        
+        window.addEventListener('touchend', e => {
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const idx = pointers.findIndex(p => p.id === e.changedTouches[i].identifier);
+                if (idx >= 0) pointers.splice(idx, 1);
+            }
+        }, { passive: true });
 
-      window.addEventListener('touchend', e => {
-        const touches = e.changedTouches; let pointer = pointers[0];
-        for (let i = 0; i < touches.length; i++) { updatePointerUpData(pointer); }
-      });
 
       function updatePointerDownData(pointer, id, posX, posY) {
         pointer.id = id; pointer.down = true; pointer.moved = false;

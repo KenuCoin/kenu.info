@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <div class="galaxy-background" id="galaxy"></div>
+  <canvas id="fluid"></canvas>
+  <div id="fallback" class="fallback" style="display:none">Twoja przeglądarka nie obsługuje WebGL. Spróbuj włączyć akcelerację sprzętową.</div>
 
   <header>
     <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
@@ -45,6 +48,21 @@
       <img src="https://i.ibb.co/7tyQcLv4/Kenu-Suit2.png" alt="Kenu Suit" />
     </div>
   </div>
+
+<div class="banner">
+    <div class="slider" style="--quantity: 5">
+        <div class="item" style="--position: 1"><img src="images/dragon_1.jpg" alt=""></div>
+        <div class="item" style="--position: 2"><img src="images/dragon_2.jpg" alt=""></div>
+        <div class="item" style="--position: 3"><img src="images/dragon_3.jpg" alt=""></div>
+        <div class="item" style="--position: 4"><img src="images/dragon_4.jpg" alt=""></div>
+        <div class="item" style="--position: 5"><img src="images/dragon_5.jpg" alt=""></div>
+        <div class="item" style="--position: 6"><img src="images/dragon_6.jpg" alt=""></div>
+        <div class="item" style="--position: 7"><img src="images/dragon_7.jpg" alt=""></div>
+        <div class="item" style="--position: 8"><img src="images/dragon_8.jpg" alt=""></div>
+        <div class="item" style="--position: 9"><img src="images/dragon_9.jpg" alt=""></div>
+        <div class="item" style="--position: 10"><img src="images/dragon_10.jpg" alt=""></div>
+    </div>
+</div>
 
   <!-- Sekcja kupna -->
   <section class="buy-kenu">
@@ -85,5 +103,8 @@
       galaxy.appendChild(star);
     }
   </script>
+  <script src="fluid-simulation.js"></script>
+  <!-- Wczytanie efektu kursora -->
+  <script src="fluid-cursor-demo.js"></script>
 </body>
 </html>

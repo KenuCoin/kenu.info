@@ -744,16 +744,23 @@
           updatePointerDownData(pointer, touches[i].identifier, posX, posY); clickSplat(pointer);
         }
       });
-      window.addEventListener('touchmove', e => {
-    const touches = e.targetTouches;
-    let pointer = pointers[0];
-    if (!pointer) addPointer(touches[0].clientX, touches[0].clientY);
-    for (let i = 0; i < touches.length; i++) {
-        let posX = scaleByPixelRatio(touches[i].clientX);
-        let posY = scaleByPixelRatio(touches[i].clientY);
-        updatePointerMoveData(pointers[0], posX, posY, pointers[0].color);
-    }
-}, { passive: true }); // <-- passive:true pozwala scrollować
+// Zdarzenie touchmove tylko dla fluid effect, nie blokując scrolla
+        window.addEventListener('touchmove', e => {
+            const touches = e.targetTouches;
+            let pointer = pointers[0];
+            if (!pointer) {
+                // jeśli nie ma jeszcze pointera, dodaj go
+                pointer = { id: touches[0].identifier, x: 0, y: 0, dx: 0, dy: 0, color: generateColor() };
+                pointers.push(pointer);
+            }
+        
+            for (let i = 0; i < touches.length; i++) {
+                let posX = scaleByPixelRatio(touches[i].clientX);
+                let posY = scaleByPixelRatio(touches[i].clientY);
+                updatePointerMoveData(pointer, posX, posY, pointer.color);
+            }
+        }, { passive: true }); // passive:true = scroll działa normalnie
+
       window.addEventListener('touchend', e => {
         const touches = e.changedTouches; let pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) { updatePointerUpData(pointer); }

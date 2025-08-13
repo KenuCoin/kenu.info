@@ -745,12 +745,15 @@
         }
       });
       window.addEventListener('touchmove', e => {
-        e.preventDefault(); const touches = e.targetTouches; let pointer = pointers[0];
-        for (let i = 0; i < touches.length; i++) {
-          let posX = scaleByPixelRatio(touches[i].clientX); let posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerMoveData(pointer, posX, posY, pointer.color);
-        }
-      }, { passive: false });
+    const touches = e.targetTouches;
+    let pointer = pointers[0];
+    if (!pointer) addPointer(touches[0].clientX, touches[0].clientY);
+    for (let i = 0; i < touches.length; i++) {
+        let posX = scaleByPixelRatio(touches[i].clientX);
+        let posY = scaleByPixelRatio(touches[i].clientY);
+        updatePointerMoveData(pointers[0], posX, posY, pointers[0].color);
+    }
+}, { passive: true }); // <-- passive:true pozwala scrollować
       window.addEventListener('touchend', e => {
         const touches = e.changedTouches; let pointer = pointers[0];
         for (let i = 0; i < touches.length; i++) { updatePointerUpData(pointer); }

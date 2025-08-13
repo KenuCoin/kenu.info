@@ -301,3 +301,116 @@ footer {
     transform: translateY(0) scale(1);
   }
 }
+/* Baner z bilbordami w kolo */
+.banner{
+    width: 100%;
+    height: 50vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 20%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(350px);
+}
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow:
+      0 0 10px #a64dff,
+      0 0 20px #6a11cb,
+      0 0 30px #2575fc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.banner .slider .item img:hover {
+  box-shadow:
+    0 0 20px #a64dff,
+    0 0 40px #6a11cb,
+    0 0 60px #2575fc;
+  transform: scale(1.05);
+}
+@media screen and (max-width: 1023px) {
+    .banner .slider{
+        width: 160px;
+        height: 200px;
+        left: calc(50% - 80px);
+    }
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(300px);
+    }
+}
+@media screen and (max-width: 767px) {
+    .banner .slider{
+        width: 100px;
+        height: 150px;
+        left: calc(50% - 50px);
+    }
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+}
+
+/* Efekt neon na banner*/
+
+.banner .slider .item::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 12px; /* dopasowane do obrazka */
+  filter: blur(1rem);
+  opacity: 1.0; /* 2.0 nie istnieje, max 1 */
+  animation: 3s spin linear infinite;
+}
+@keyframes spin{
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
+}
+
+/* Efekt kursora */
+canvas#fluid { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; cursor: none; }
+    .fallback { position: fixed; inset: 0; display: grid; place-items: center; color: #ddd; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }

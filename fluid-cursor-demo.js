@@ -808,8 +808,8 @@
         for (let i = 0; i < 8; i++) {
           const x = Math.random();
           const y = Math.random();
-          const dx = (Math.random() - 0.1) * 50;
-          const dy = (Math.random() - 0.1) * 50;
+          const dx = (Math.random() - 0.5) * 50;
+          const dy = (Math.random() - 0.5) * 50;
           const col = generateColor(); col.r *= 10; col.g *= 10; col.b *= 10;
           splat(x, y, dx, dy, col);
         }

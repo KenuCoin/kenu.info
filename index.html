@@ -10,6 +10,15 @@
 <body>
 
   <div class="galaxy-background" id="galaxy"></div>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-background"></div>
+    <div class="loader-content">
+      <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="loader-logo">
+      <div class="loader-text">Ładowanie Kenu Memecoin...</div>
+    </div>
+  </div>
+
   <canvas id="fluid"></canvas>
   <div id="fallback" class="fallback" style="display:none">Twoja przeglądarka nie obsługuje WebGL. Spróbuj włączyć akcelerację sprzętową.</div>
 
@@ -103,7 +112,18 @@
       galaxy.appendChild(star);
     }
   </script>
-  <script src="fluid-simulation.js"></script>
+  <script>
+  // Loader + start fluid cursor po wczytaniu strony
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('fade-out'); // fade out
+
+    setTimeout(() => {
+      loader.style.display = 'none'; // całkowicie ukryj
+      initFluid(); // start fluid cursor dopiero po wczytaniu
+    }, 800); // czas trwania fade-out
+  });
+  </script>
   <!-- Wczytanie efektu kursora -->
   <script src="fluid-cursor-demo.js"></script>
 </body>

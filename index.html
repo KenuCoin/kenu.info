@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kenu the best Memecoin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Kenu Memecoin</title>
 </head>
 <body>
-
-  <div class="galaxy-background" id="galaxy"></div>
-  <!-- Loader -->
-  <div id="loader">
-    <div class="loader-background"></div>
-    <div class="loader-content">
-      <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="loader-logo">
-      <div class="loader-text">Ładowanie Kenu Memecoin...</div>
-    </div>
-  </div>
-
-  <canvas id="fluid"></canvas>
-  <div id="fallback" class="fallback" style="display:none">Twoja przeglądarka nie obsługuje WebGL. Spróbuj włączyć akcelerację sprzętową.</div>
-
   <header>
-    <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
+    <div class="header-container">
+      <nav class="header-nav nav-menu-left">
+        <ul class="nav-menu">
+          <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+          <li><a href="#" data-page="about" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+      <a href="/" class="header-logo-link">
+        <img src="https://i.ibb.co/C5pGjvQW/KENU-Font.png" alt="Kenu Logo" class="header-logo" />
+      </a>
+      <nav class="header-nav nav-menu-right">
+        <ul class="nav-menu">
+          <li><a href="#" data-page="roadmap" class="nav-link">Roadmap</a></li>
+          <li><a href="#" data-page="buy" class="nav-link">Buy</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <a href="#" class="header-icon"><img src="images/x_icon_1.png" alt="Icon 1"></a>
+        <a href="#" class="header-icon"><img src="images/coingecko_1.png" alt="Icon 2"></a>
+      </div>
+    </div>
   </header>
+  <div id="content" class="content-container"></div>
+
 
   <!-- Pierwszy blok -->
   <div class="intro">
     <div class="left">
-      <img src="https://i.ibb.co/KzW123jk/1444.png" alt="Kenu Memcoin" />
+      <img src="images/testtt.png" alt="Kenu Memcoin" />
     </div>
     <div class="right">
       <h2>What is Kenu?</h2>
@@ -39,6 +46,12 @@
       </div>
     </div>
   </div>
+
+ <!-- Galaktyka zdjecie miedzy sekcjami -->
+<div class="floating-image">
+  <img src="images/MilkyWay_Galaxy_Kenu.png" alt="Milky Way Galaxy" />
+</div>
+
 
   <!-- Duży obrazek -->
   <div class="full-width-image">
@@ -65,11 +78,6 @@
         <div class="item" style="--position: 3"><img src="images/dragon_3.jpg" alt=""></div>
         <div class="item" style="--position: 4"><img src="images/dragon_4.jpg" alt=""></div>
         <div class="item" style="--position: 5"><img src="images/dragon_5.jpg" alt=""></div>
-        <div class="item" style="--position: 6"><img src="images/dragon_6.jpg" alt=""></div>
-        <div class="item" style="--position: 7"><img src="images/dragon_7.jpg" alt=""></div>
-        <div class="item" style="--position: 8"><img src="images/dragon_8.jpg" alt=""></div>
-        <div class="item" style="--position: 9"><img src="images/dragon_9.jpg" alt=""></div>
-        <div class="item" style="--position: 10"><img src="images/dragon_10.jpg" alt=""></div>
     </div>
 </div>
 
@@ -88,13 +96,31 @@
     </div>
   </section>
 
+  <!-- Nowa sekcja z video -->
+  <section class="info-video">
+    <div class="left">
+      <h2>CHECK our X social</h2>
+      <div class="description">
+        Kenu isn’t just about memes and coins — it’s about a whole experience. 
+        Watch our latest animation or video to see the magic behind the movement.
+      </div>
+    </div>
+    <div class="right">
+      <video class="my-video"> 
+        <source src="movie/Kenu_X_Social_Purple1.webm" type="video/mp4">
+        Twoja przeglądarka nie obsługuje elementu video.
+      </video>
+    </div>
+  </section>
+
+
   <footer>
     &copy; 2025 Kenu Memecoin. All rights reserved.
   </footer>
 
   <script>
     const galaxy = document.getElementById('galaxy');
-    const starsCount = 50;
+    const starsCount = 275;
 
     for(let i=0; i<starsCount; i++) {
       const star = document.createElement('div');
@@ -112,19 +138,30 @@
       galaxy.appendChild(star);
     }
   </script>
+  <!-- Opcja FILMU z klasa -->
   <script>
-  // Loader + start fluid cursor po wczytaniu strony
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    loader.classList.add('fade-out'); // fade out
-
-    setTimeout(() => {
-      loader.style.display = 'none'; // całkowicie ukryj
-      initFluid(); // start fluid cursor dopiero po wczytaniu
-    }, 800); // czas trwania fade-out
+  const vid = document.querySelector('.my-video');
+  vid.autoplay = true;
+  vid.loop = true;
+  vid.muted = true;
+  vid.playsInline = true;
+  vid.play();
+  </script>
+  <!-- Naglowek active -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    navLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').split('/').pop();
+      if (linkPath === currentPath) {
+        link.classList.add('active');
+      }
+    });
   });
   </script>
   <!-- Wczytanie efektu kursora -->
   <script src="fluid-cursor-demo.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
